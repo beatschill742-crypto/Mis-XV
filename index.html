@@ -231,56 +231,6 @@
         .photo-frame::before { top: -20px; left: -20px; }
         .photo-frame::after { bottom: -20px; right: -20px; transform: rotate(180deg); }
 
-        /* Animación del Pantano */
-        .swamp-animation {
-            width: 90%;
-            max-width: 600px;
-            height: 300px;
-            margin: 40px auto;
-            border-radius: 15px;
-            border: 3px solid var(--secondary-color);
-            position: relative;
-            overflow: hidden;
-            background-image: url('image_6ebcb5.png');
-            background-size: cover;
-            background-position: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-            z-index: 20;
-        }
-
-        .swamp-water {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: 40%;
-            background: linear-gradient(transparent, rgba(13, 31, 23, 0.9));
-            animation: waves 3s infinite alternate;
-        }
-
-        @keyframes waves {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(5px); }
-        }
-
-        .frogs-container {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 150px;
-            animation: breathe 3s ease-in-out infinite;
-        }
-
-        .frogs-container img {
-            width: 100%;
-            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.4));
-        }
-
-        @keyframes breathe {
-            0%, 100% { transform: translateX(-50%) scale(1); }
-            50% { transform: translateX(-50%) scale(1.02); }
-        }
-
         /* Secciones de Texto (Padres, Ubicaciones, Itinerario) */
         .info-section {
             text-align: center;
@@ -493,14 +443,6 @@
                 <div class="time-box"><span id="hours">00</span><p>Hrs</p></div>
                 <div class="time-box"><span id="minutes">00</span><p>Min</p></div>
                 <div class="time-box"><span id="seconds">00</span><p>Seg</p></div>
-            </div>
-        </div>
-
-        <!-- Animación del Pantano Mágico -->
-        <div class="swamp-animation">
-            <div class="swamp-water"></div>
-            <div class="frogs-container">
-                <img src="image_6ebc15.png" alt="Sapitos" onerror="this.src='https://via.placeholder.com/150x200/transparent/d4af37?text=Sapos';">
             </div>
         </div>
 
