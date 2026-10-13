@@ -8,21 +8,21 @@
     
     <style>
         :root {
-            --primary-green: #1a3c28; /* Verde pantano profundo */
-            --tiana-green: #709a71; /* Verde vestido */
-            --gold-light: #f9df9f;
+            --primary-green: #0a1f12; /* Verde pantano súper oscuro */
+            --tiana-green: #3a6341; /* Verde vestido/bosque */
+            --tiana-light: #709a71;
+            --gold-light: #fdf0c9;
             --gold-rich: #d4af37;
             --gold-dark: #8c7322;
-            --bg-cream: #f8f6f0;
-            --text-dark: #1a1a1a;
+            --text-light: #f8f6f0;
         }
         
         body, html {
             margin: 0;
             padding: 0;
             font-family: 'Playfair Display', serif;
-            background-color: var(--bg-cream);
-            color: var(--text-dark);
+            background-color: var(--primary-green);
+            color: var(--text-light);
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
@@ -35,7 +35,7 @@
 
         /* Texto Mágico con Brillo Dorado */
         .magical-text {
-            background: linear-gradient(to right, var(--gold-dark), var(--gold-light), var(--gold-rich));
+            background: linear-gradient(to right, var(--gold-light), var(--gold-rich), var(--gold-light));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 0px 4px 15px rgba(212, 175, 55, 0.4);
@@ -61,7 +61,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle, rgba(11,32,21,0.5) 0%, rgba(11,32,21,0.8) 100%);
+            background: radial-gradient(circle, rgba(10,31,18,0.6) 0%, rgba(10,31,18,0.9) 100%);
             z-index: 0;
         }
 
@@ -72,11 +72,11 @@
         }
         
         .envelope-content {
-            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(248, 246, 240, 0.98));
+            background: linear-gradient(135deg, rgba(10, 31, 18, 0.95), rgba(20, 45, 28, 0.98));
             padding: 60px 40px;
             border-radius: 10px;
             text-align: center;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.5), inset 0 0 0 4px var(--gold-rich), inset 0 0 20px rgba(212,175,55,0.2);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.8), inset 0 0 0 4px var(--gold-rich), inset 0 0 20px rgba(212,175,55,0.2);
             z-index: 1;
             position: relative;
             max-width: 90%;
@@ -87,62 +87,48 @@
         .envelope-content h1 {
             font-size: 4.5rem;
             margin-bottom: 5px;
-            color: var(--primary-green);
         }
 
         .wax-seal {
             width: 60px;
             height: 60px;
-            background: radial-gradient(circle, #c79a22, #8c7322);
+            background: radial-gradient(circle, #e0b943, #8c7322);
             border-radius: 50%;
             margin: -90px auto 30px auto;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3), inset 0 2px 5px rgba(255,255,255,0.4);
-            border: 2px solid #e0b943;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6), inset 0 2px 5px rgba(255,255,255,0.4);
+            border: 2px solid #fdf0c9;
             display: flex;
             justify-content: center;
             align-items: center;
             font-family: 'Great Vibes', cursive;
-            font-size: 2rem;
-            color: #5c4b12;
-            text-shadow: 1px 1px 1px rgba(255,255,255,0.3);
+            font-size: 2.2rem;
+            color: #4a3c0d;
+            text-shadow: 1px 1px 1px rgba(255,255,255,0.5);
         }
 
         .open-btn {
-            background: linear-gradient(135deg, var(--primary-green), #2a5a3c);
-            color: var(--gold-light);
-            border: 1px solid var(--gold-rich);
+            background: linear-gradient(135deg, var(--gold-rich), var(--gold-dark));
+            color: var(--primary-green);
+            border: 1px solid var(--gold-light);
             padding: 15px 40px;
             font-size: 1.3rem;
+            font-weight: 700;
             border-radius: 5px;
             cursor: pointer;
             font-family: 'Playfair Display', serif;
             letter-spacing: 2px;
             text-transform: uppercase;
             transition: all 0.4s ease;
-            box-shadow: 0 10px 20px rgba(26, 60, 40, 0.4);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
             margin-top: 30px;
             position: relative;
             overflow: hidden;
         }
 
-        .open-btn::after {
-            content: '';
-            position: absolute;
-            top: -50%; left: -50%; width: 200%; height: 200%;
-            background: linear-gradient(to bottom right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
-            transform: rotate(45deg) translateY(-100%);
-            transition: transform 0.6s ease;
-        }
-        
-        .open-btn:hover::after {
-            transform: rotate(45deg) translateY(100%);
-        }
-
         .open-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 25px rgba(212, 175, 55, 0.4);
-            border-color: var(--gold-light);
-            color: white;
+            box-shadow: 0 15px 25px rgba(212, 175, 55, 0.6);
+            color: black;
         }
 
         .container {
@@ -154,75 +140,103 @@
             background-position: center top;
             background-attachment: fixed;
             min-height: 100vh;
+            position: relative;
         }
         
         .content-overlay {
-            background: rgba(248, 246, 240, 0.94);
+            background: rgba(10, 31, 18, 0.88); /* Fondo verde translúcido */
             padding: 60px 30px;
             border-radius: 8px;
             margin-top: 8vh;
             margin-bottom: 8vh;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
             border: 2px solid rgba(212, 175, 55, 0.5);
             position: relative;
+            z-index: 10;
         }
 
-        /* Ornate Art Deco Corners */
-        .content-overlay::before, .content-overlay::after {
-            content: ''; position: absolute; width: 60px; height: 60px; border: 2px solid var(--gold-rich); pointer-events: none;
+        .vine-container {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            width: 120px;
+            z-index: 5;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            opacity: 0.8;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
         }
-        .content-overlay::before { top: 15px; left: 15px; border-right: none; border-bottom: none; }
-        .content-overlay::after { bottom: 15px; right: 15px; border-left: none; border-top: none; }
+        .vine-left { left: 0; animation: vineFloat 8s ease-in-out infinite alternate; }
+        .vine-right { right: 0; transform: scaleX(-1); animation: vineFloat 9s ease-in-out infinite alternate-reverse; }
+        
+        @keyframes vineFloat {
+            0% { transform: translateY(-10px); }
+            100% { transform: translateY(20px); }
+        }
+        .vine-right {
+            /* Al tener scaleX(-1), la animación debe conservar ese scale */
+            animation: vineFloatRight 9s ease-in-out infinite alternate-reverse;
+        }
+        @keyframes vineFloatRight {
+            0% { transform: scaleX(-1) translateY(-10px); }
+            100% { transform: scaleX(-1) translateY(20px); }
+        }
 
-        .header { text-align: center; margin-bottom: 50px; }
+        .header { text-align: center; margin-bottom: 40px; }
         .header h1 { font-size: 6.5rem; line-height: 1; margin: 10px 0; }
         .header .subtitle {
             font-size: 1.1rem;
             letter-spacing: 4px;
             text-transform: uppercase;
-            color: var(--primary-green);
+            color: var(--gold-light);
             font-weight: 700;
         }
 
-        .main-image-container {
+        .photo-frame {
             text-align: center;
-            margin: 50px 0;
+            margin: 60px 0;
             position: relative;
             padding: 20px;
         }
         
-        .main-image-container img {
+        .photo-frame img {
             width: 100%;
             max-width: 450px;
-            border-radius: 150px 150px 10px 10px; /* Forma de arco/ventana */
-            box-shadow: 0 20px 50px rgba(26, 60, 40, 0.3);
-            border: 6px solid var(--gold-rich);
+            border-radius: 10px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            border: 4px solid var(--gold-rich);
             display: block;
             margin: 0 auto;
             position: relative;
             z-index: 2;
         }
-        
-        /* Brillo detrás de la foto */
-        .main-image-container::before {
-            content: '';
+
+        /* Adornos florales en las esquinas de las fotos */
+        .photo-frame::before, .photo-frame::after {
+            content: '🌸'; /* Usamos un emoji floral que se adaptará como decoración mágica */
             position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100%; max-width: 500px; height: 110%;
-            background: radial-gradient(circle, rgba(212,175,55,0.4) 0%, transparent 70%);
-            z-index: 1;
-            animation: pulseGlow 4s infinite alternate;
+            font-size: 3rem;
+            filter: sepia(1) hue-rotate(10deg) saturate(3) drop-shadow(0 0 10px rgba(212,175,55,0.8));
+            z-index: 3;
+            animation: floatFlower 4s infinite alternate ease-in-out;
+        }
+        .photo-frame::before { top: 5px; left: 10%; }
+        .photo-frame::after { bottom: 5px; right: 10%; animation-delay: 2s; }
+
+        @keyframes floatFlower {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-10px) rotate(10deg); }
         }
 
         .cinematic-frame {
             width: 100%;
-            height: 400px;
+            height: 450px;
             border-radius: 10px;
             margin: 60px 0;
             border: 3px solid var(--gold-rich);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3), inset 0 0 60px rgba(0,0,0,0.6);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 0 60px rgba(0,0,0,0.8);
             position: relative;
             overflow: hidden;
             display: flex;
@@ -230,186 +244,121 @@
             align-items: center;
         }
 
-        /* -- Animación 1: Pantano Cinematográfico -- */
         .anim-swamp {
             background-image: url('image_6ebcb5.png');
             background-size: cover;
             background-position: center;
         }
 
-        /* Capa de Niebla (Fog) */
         .swamp-fog {
             position: absolute;
             width: 200%; height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.4"/></svg>');
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.3"/></svg>');
             mix-blend-mode: screen;
-            opacity: 0.5;
-            animation: driftFog 20s linear infinite;
+            opacity: 0.6;
+            animation: driftFog 25s linear infinite;
             z-index: 2;
         }
         @keyframes driftFog { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* Los Sapitos del usuario */
         .swamp-frogs {
-            width: 280px;
+            width: 320px;
             height: auto;
             z-index: 10;
             position: relative;
-            top: 30px;
-            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.7));
-            animation: breatheFrog 4s ease-in-out infinite;
+            top: 20px;
+            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.9));
+            animation: breatheFrog 3s ease-in-out infinite;
         }
-        /* Movimiento sutil y realista */
         @keyframes breatheFrog {
-            0%, 100% { transform: translateY(0) scale(1) rotate(0deg); }
-            50% { transform: translateY(-8px) scale(1.01) rotate(1deg); }
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-12px) scale(1.02); } /* Brinquito más notorio */
         }
 
-        /* Reflejo y agua en movimiento real */
         .water-surface {
             position: absolute;
-            bottom: 0; left: 0; width: 100%; height: 35%;
-            background: linear-gradient(to bottom, rgba(14, 40, 25, 0) 0%, rgba(14, 40, 25, 0.9) 100%);
+            bottom: 0; left: 0; width: 100%; height: 40%;
+            background: linear-gradient(to bottom, rgba(10, 31, 18, 0) 0%, rgba(10, 31, 18, 0.9) 100%);
             z-index: 3;
             overflow: hidden;
         }
         .water-surface::after {
             content: ''; position: absolute; top: 0; left: -50%; width: 200%; height: 100%;
-            background: repeating-linear-gradient(0deg, transparent, transparent 4px, rgba(212, 175, 55, 0.1) 5px, rgba(212, 175, 55, 0.1) 6px);
+            background: repeating-linear-gradient(0deg, transparent, transparent 4px, rgba(212, 175, 55, 0.15) 5px, rgba(212, 175, 55, 0.15) 6px);
             animation: waveRipple 3s infinite linear;
         }
-        @keyframes waveRipple { 0% { transform: translateY(0); } 100% { transform: translateY(12px); } }
 
-        /* Luciérnagas Premium */
         .firefly {
             position: absolute;
-            width: 5px; height: 5px;
-            background-color: #fcf1b3;
             border-radius: 50%;
-            box-shadow: 0 0 15px 4px var(--gold-rich), 0 0 30px #fff;
             z-index: 8;
             opacity: 0;
-            animation: flyAround 8s cubic-bezier(0.4, 0, 0.2, 1) infinite, glowPulse 2s infinite alternate;
+            animation: flyAround 6s cubic-bezier(0.4, 0, 0.2, 1) infinite, glowPulse 1.5s infinite alternate;
         }
+        /* Colores dinámicos para luciérnagas */
+        .ff-gold { background-color: #fdf0c9; box-shadow: 0 0 20px 5px var(--gold-rich), 0 0 30px #fff; }
+        .ff-green { background-color: #d1ffc4; box-shadow: 0 0 20px 5px #66ff33, 0 0 30px #fff; }
+
         @keyframes flyAround {
-            0% { transform: translate(0, 0) scale(0.5); opacity: 0; }
+            0% { transform: translate(0, 0) scale(0.3); opacity: 0; }
             20% { opacity: 1; scale: 1; }
             80% { opacity: 1; scale: 1; }
-            100% { transform: translate(60px, -80px) scale(0.5); opacity: 0; }
+            100% { transform: translate(80px, -100px) scale(0.3); opacity: 0; }
         }
-        @keyframes glowPulse { 0% { box-shadow: 0 0 10px 2px var(--gold-rich); } 100% { box-shadow: 0 0 25px 6px #fcf1b3; } }
-
-        .anim-night {
-            background: radial-gradient(circle at center bottom, #103247 0%, #030f1c 100%);
-        }
-        
-        .moon {
-            position: absolute; top: 10%; right: 15%;
-            width: 80px; height: 80px;
-            background: #fdfae3;
-            border-radius: 50%;
-            box-shadow: 0 0 40px 10px rgba(253, 250, 227, 0.4), inset -10px -10px 20px rgba(0,0,0,0.1);
-            z-index: 1;
-        }
-
-        .shooting-star-layer { position: absolute; inset: 0; z-index: 2; }
-        .s-star {
-            position: absolute; top: 20%; left: -10%;
-            width: 150px; height: 2px;
-            background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,1));
-            transform: rotate(-40deg);
-            animation: shootingStarAnim 6s linear infinite;
-            filter: drop-shadow(0 0 10px white);
-        }
-        @keyframes shootingStarAnim {
-            0% { transform: translate(0,0) rotate(-40deg) scaleX(0); opacity: 0; }
-            5% { transform: translate(100px, 80px) rotate(-40deg) scaleX(1); opacity: 1; }
-            15% { transform: translate(500px, 400px) rotate(-40deg) scaleX(0); opacity: 0; }
-            100% { opacity: 0; }
-        }
-
-        /* Silueta de sapos hermosa y detallada (SVG) */
-        .frog-silhouette {
-            position: absolute;
-            bottom: 15px; left: 50%;
-            transform: translateX(-50%);
-            width: 250px;
-            height: auto;
-            z-index: 10;
-            filter: drop-shadow(0 -5px 15px rgba(253, 250, 227, 0.2));
-        }
-
-        .anim-altar {
-            background: radial-gradient(ellipse at center, #234731 0%, #07150d 100%);
-        }
-        
-        /* Luces del altar */
-        .altar-lights {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% 30%, rgba(212,175,55,0.4) 0%, transparent 60%);
-            animation: pulseGlow 4s infinite alternate;
-        }
-
-        @keyframes pulseGlow {
-            0% { opacity: 0.7; transform: scale(0.98); }
-            100% { opacity: 1; transform: scale(1.02); }
+        @keyframes glowPulse { 
+            0% { filter: brightness(0.8) blur(1px); } 
+            100% { filter: brightness(1.5) blur(3px); transform: scale(1.2); } 
         }
 
         .family-section {
             text-align: center; margin: 60px 0; line-height: 1.6;
-            padding: 40px; background: rgba(26, 60, 40, 0.03);
+            padding: 40px; background: rgba(212, 175, 55, 0.05);
             border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 8px;
         }
         .family-section h3 { font-size: 2.8rem; margin-bottom: 15px; }
-        .family-section p { font-size: 1.3rem; margin-bottom: 30px; font-weight: 600; color: #333; }
+        .family-section p { font-size: 1.3rem; margin-bottom: 30px; font-weight: 600; color: var(--gold-light); }
 
         .countdown-section {
             text-align: center; margin: 60px 0; padding: 50px 20px;
-            background: linear-gradient(135deg, var(--primary-green), #2a5a3c);
+            background: linear-gradient(135deg, var(--tiana-green), #1a3c28);
             border-radius: 8px; color: var(--gold-light);
-            box-shadow: 0 15px 40px rgba(26, 60, 40, 0.4);
-            border: 2px solid var(--gold-dark);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+            border: 2px solid var(--gold-rich);
             position: relative; overflow: hidden;
         }
-        
-        /* Deco en el contador */
-        .countdown-section::before {
-            content: ''; position: absolute; inset: 0;
-            background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.03) 10px, rgba(255,255,255,0.03) 20px);
-        }
 
-        .countdown-section h3 { font-size: 4rem; margin-bottom: 30px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); position: relative; z-index: 2;}
+        .countdown-section h3 { font-size: 4rem; margin-bottom: 30px; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); position: relative; z-index: 2;}
 
         .countdown { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; position: relative; z-index: 2;}
         .time-box {
-            background: rgba(0,0,0,0.4); padding: 20px 25px; border-radius: 8px; min-width: 80px;
+            background: rgba(0,0,0,0.6); padding: 20px 25px; border-radius: 8px; min-width: 80px;
             backdrop-filter: blur(5px); border: 1px solid rgba(212,175,55,0.5);
-            box-shadow: inset 0 0 15px rgba(212,175,55,0.2);
+            box-shadow: inset 0 0 20px rgba(212,175,55,0.3);
         }
-        .time-box span { display: block; font-size: 3rem; font-weight: 700; color: var(--gold-rich); text-shadow: 0 0 10px rgba(212,175,55,0.5); }
-        .time-box p { margin: 5px 0 0 0; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; }
+        .time-box span { display: block; font-size: 3rem; font-weight: 700; color: var(--gold-rich); text-shadow: 0 0 15px rgba(212,175,55,0.6); }
+        .time-box p { margin: 5px 0 0 0; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: #fff;}
 
         .locations-section { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; margin: 60px 0; }
         .location-card {
-            flex: 1; min-width: 300px; background: white; padding: 40px 30px;
+            flex: 1; min-width: 300px; background: rgba(10, 31, 18, 0.9); padding: 40px 30px;
             border-radius: 8px; text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            border-top: 6px solid var(--primary-green);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid var(--gold-rich);
+            border-top: 6px solid var(--gold-rich);
             transition: transform 0.4s ease, box-shadow 0.4s;
             position: relative;
         }
-        .location-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2); }
-        .location-card h3 { font-size: 2.8rem; margin-bottom: 15px; color: var(--primary-green); }
-        .location-card p { font-size: 1rem; color: #555; line-height: 1.6; }
+        .location-card h3 { font-size: 2.8rem; margin-bottom: 15px; color: var(--gold-light); }
+        .location-card p { font-size: 1rem; color: #ccc; line-height: 1.6; }
 
         .btn {
             display: inline-block; margin-top: 25px; padding: 12px 35px;
-            background-color: var(--primary-green); color: var(--gold-light);
+            background-color: var(--gold-rich); color: var(--primary-green);
             text-decoration: none; border-radius: 4px; font-weight: bold; letter-spacing: 1px;
             text-transform: uppercase; transition: all 0.3s;
-            border: 1px solid var(--gold-rich);
+            border: 1px solid var(--gold-light);
         }
-        .btn:hover { background-color: var(--gold-rich); color: var(--primary-green); }
+        .btn:hover { background-color: var(--gold-light); transform: scale(1.05); }
 
         .itinerary-section { margin: 80px 0; }
         .itinerary-section h2 { text-align: center; font-size: 4.5rem; margin-bottom: 50px; }
@@ -422,8 +371,8 @@
         .timeline-item { padding: 15px 40px; position: relative; width: 50%; box-sizing: border-box; margin-bottom: 20px; }
         .timeline-item::after {
             content: ''; position: absolute; width: 20px; height: 20px;
-            background-color: var(--primary-green); border: 4px solid var(--gold-light);
-            top: 20px; border-radius: 50%; z-index: 1; box-shadow: 0 0 10px rgba(212,175,55,0.5);
+            background-color: var(--tiana-green); border: 4px solid var(--gold-light);
+            top: 20px; border-radius: 50%; z-index: 1; box-shadow: 0 0 15px rgba(212,175,55,0.8);
         }
         .left { left: 0; text-align: right; }
         .right { left: 50%; }
@@ -431,20 +380,20 @@
         .left::after { right: -14px; }
 
         .timeline-content {
-            padding: 20px; background: white; border-radius: 8px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-left: 5px solid var(--gold-rich);
+            padding: 20px; background: rgba(20, 45, 28, 0.9); border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5); border-left: 5px solid var(--gold-rich);
         }
         .right .timeline-content { border-left: none; border-right: 5px solid var(--gold-rich); }
-        .timeline-content h4 { margin: 0; font-size: 1.4rem; color: var(--primary-green); font-family: 'Playfair Display', serif; font-weight: 700; }
-        .timeline-content p { margin: 5px 0 0 0; font-size: 1.1rem; color: #666; font-style: italic; }
+        .timeline-content h4 { margin: 0; font-size: 1.4rem; color: var(--gold-light); font-family: 'Playfair Display', serif; font-weight: 700; }
+        .timeline-content p { margin: 5px 0 0 0; font-size: 1.1rem; color: #ccc; font-style: italic; }
 
         .gifts-section {
-            text-align: center; margin: 60px 0; padding: 50px 40px; background: white;
-            border-radius: 8px; box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+            text-align: center; margin: 60px 0; padding: 50px 40px; background: rgba(10, 31, 18, 0.9);
+            border-radius: 8px; box-shadow: 0 15px 40px rgba(0,0,0,0.5);
             border: 2px dashed var(--gold-rich); position: relative;
         }
-        .gifts-section p { font-size: 1.2rem; line-height: 1.8; color: #444; margin-top: 20px; }
-        .envelope-icon { font-size: 4.5rem; margin-top: 20px; filter: drop-shadow(0 5px 15px rgba(212,175,55,0.4)); animation: floatUp 3s infinite alternate; display: inline-block; }
+        .gifts-section p { font-size: 1.2rem; line-height: 1.8; color: #ddd; margin-top: 20px; }
+        .envelope-icon { font-size: 4.5rem; margin-top: 20px; filter: drop-shadow(0 5px 15px rgba(212,175,55,0.6)); animation: floatUp 3s infinite alternate; display: inline-block; }
         @keyframes floatUp { 0% { transform: translateY(0); } 100% { transform: translateY(-15px); } }
 
         .reactions-section {
@@ -452,28 +401,34 @@
             border-radius: 8px; border: 1px solid rgba(212, 175, 55, 0.3);
         }
         .reaction-btn {
-            background: white; border: 2px solid var(--primary-green); padding: 12px 25px;
+            background: transparent; border: 2px solid var(--gold-rich); padding: 12px 25px;
             border-radius: 30px; margin: 10px; cursor: pointer; font-family: 'Playfair Display', serif;
-            font-weight: 700; color: var(--primary-green); transition: all 0.3s; font-size: 1.1rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-transform: uppercase; letter-spacing: 1px;
+            font-weight: 700; color: var(--gold-light); transition: all 0.3s; font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3); text-transform: uppercase; letter-spacing: 1px;
         }
-        .reaction-btn:hover { background: var(--primary-green); color: var(--gold-light); transform: scale(1.05) translateY(-3px); }
+        .reaction-btn:hover { background: var(--gold-rich); color: var(--primary-green); transform: scale(1.05) translateY(-3px); }
 
-        /* Magia Visual (Partículas de Confeti Premium y Reacciones) */
+        /* Lluvia de Flores Constante */
+        .falling-flower {
+            position: fixed;
+            top: -50px;
+            z-index: 9997;
+            pointer-events: none;
+            animation: fallContinuous linear infinite;
+            filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.4));
+        }
+        @keyframes fallContinuous {
+            to { transform: translateY(110vh) rotate(360deg); }
+        }
+
+        /* Confeti del inicio */
         .sparkle-confetti {
             position: fixed; width: 12px; height: 12px; background: var(--gold-rich);
             border-radius: 50%; z-index: 9998; pointer-events: none;
             box-shadow: 0 0 15px var(--gold-light);
             animation: fallSparkle linear forwards;
         }
-        .leaf-confetti {
-            position: fixed; width: 15px; height: 15px; background: var(--tiana-green);
-            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); /* Forma de hoja */
-            z-index: 9998; pointer-events: none;
-            animation: fallLeaf linear forwards;
-        }
         @keyframes fallSparkle { to { transform: translateY(100vh) scale(0); opacity: 0; } }
-        @keyframes fallLeaf { to { transform: translateY(100vh) rotate(720deg); opacity: 0; } }
 
         .reaction-particle {
             position: fixed; pointer-events: none; z-index: 9999; font-size: 2.5rem;
@@ -494,6 +449,7 @@
             .left, .right { left: 0; }
             .right .timeline-content { border-right: none; border-left: 5px solid var(--gold-rich); }
             .countdown-section h3 { font-size: 3rem; }
+            .vine-container { opacity: 0.3; } /* Menos opacidad en móvil para no estorbar el texto */
         }
     </style>
 </head>
@@ -503,30 +459,59 @@
         <div class="envelope-content">
             <div class="wax-seal">P</div>
             <h1 class="magical-text">Mis XV Años</h1>
-            <p style="font-size: 1.3rem; color: #555; margin-bottom: 20px; font-style: italic;">Estás invitado a una noche mágica en el pantano...</p>
+            <p style="font-size: 1.3rem; color: #ddd; margin-bottom: 20px; font-style: italic;">Estás invitado a una noche mágica en el pantano...</p>
             <button class="open-btn" onclick="openInvitation()">Abrir Invitación</button>
         </div>
     </div>
 
-    <!-- Audio Oculto (Exactamente el que pediste) -->
+    <!-- Audio Oculto -->
     <audio id="bg-music" loop>
         <source src="micancionxv.mp3" type="audio/mpeg">
     </audio>
 
+    <!-- Enredaderas Vivas (SVG) -->
+    <div class="vine-container vine-left">
+        <svg viewBox="0 0 100 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 50 0 Q 80 100 40 200 T 60 400 T 30 600 T 50 800" stroke="var(--tiana-light)" stroke-width="6" opacity="0.6"/>
+            <!-- Hojas -->
+            <path d="M 60 100 Q 90 90 80 120 Q 60 110 60 100 Z" fill="var(--tiana-green)"/>
+            <path d="M 35 250 Q 10 240 20 270 Q 40 260 35 250 Z" fill="var(--tiana-light)"/>
+            <path d="M 65 350 Q 95 340 85 370 Q 65 360 65 350 Z" fill="var(--tiana-green)"/>
+            <path d="M 25 450 Q 0 440 10 470 Q 30 460 25 450 Z" fill="var(--tiana-light)"/>
+            <path d="M 55 550 Q 85 540 75 570 Q 55 560 55 550 Z" fill="var(--tiana-green)"/>
+            <path d="M 35 700 Q 10 690 20 720 Q 40 710 35 700 Z" fill="var(--tiana-light)"/>
+        </svg>
+    </div>
+    <div class="vine-container vine-right">
+        <svg viewBox="0 0 100 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 50 0 Q 80 100 40 200 T 60 400 T 30 600 T 50 800" stroke="var(--tiana-light)" stroke-width="6" opacity="0.6"/>
+            <path d="M 60 100 Q 90 90 80 120 Q 60 110 60 100 Z" fill="var(--tiana-green)"/>
+            <path d="M 35 250 Q 10 240 20 270 Q 40 260 35 250 Z" fill="var(--tiana-light)"/>
+            <path d="M 65 350 Q 95 340 85 370 Q 65 360 65 350 Z" fill="var(--tiana-green)"/>
+            <path d="M 25 450 Q 0 440 10 470 Q 30 460 25 450 Z" fill="var(--tiana-light)"/>
+            <path d="M 55 550 Q 85 540 75 570 Q 55 560 55 550 Z" fill="var(--tiana-green)"/>
+            <path d="M 35 700 Q 10 690 20 720 Q 40 710 35 700 Z" fill="var(--tiana-light)"/>
+        </svg>
+    </div>
+
     <div class="container">
+        <!-- Contenedor para lluvia continua de flores -->
+        <div id="flower-rain-container"></div>
+
         <div class="content-overlay">
             
             <div class="header">
                 <p class="subtitle">Con la bendición de Dios y mis padres</p>
                 <h1 class="magical-text">Pao</h1>
-                <p class="script-font" style="font-size: 3.5rem; color: var(--primary-green); margin-top: 5px;">Mis Quince Años</p>
+                <p class="script-font" style="font-size: 3.5rem; color: var(--gold-light); margin-top: 5px;">Mis Quince Años</p>
             </div>
 
-            <!-- Foto Principal con Marco Mágico -->
-            <div class="main-image-container">
-                <img src="foto1xv.jpeg" alt="Pao Quinceañera" onerror="this.src='https://placehold.co/600x800/1a3c28/f9df9f?text=foto1xv.jpeg';">
+            <!-- Foto 1 -->
+            <div class="photo-frame">
+                <img src="foto1xv.jpeg" alt="Pao Quinceañera" onerror="this.src='https://placehold.co/600x800/0a1f12/d4af37?text=foto1xv.jpeg';">
             </div>
 
+            <!-- ANIMACIÓN ÚNICA: El Pantano Mágico -->
             <div class="cinematic-frame anim-swamp" id="swamp-container">
                 <div class="swamp-fog"></div>
                 <!-- Luciérnagas generadas por JS irán aquí -->
@@ -540,10 +525,10 @@
 
             <div class="family-section">
                 <h3 class="magical-text">Mis Padres</h3>
-                <p>Sonia Romero González<br><span style="color: var(--gold-rich);">&</span><br>Iván de Jesús Osornio de la Cruz</p>
+                <p>Sonia Romero González<br><span style="color: var(--gold-light); font-size: 1.5rem;">&</span><br>Iván Osorio de la Cruz</p>
                 
                 <h3 class="magical-text" style="margin-top: 40px;">Mis Madrinas</h3>
-                <p>Julia Romero Morales<br><span style="color: var(--gold-rich);">&</span><br>Teresa Romero González</p>
+                <p>Julia Romero Morales<br><span style="color: var(--gold-light); font-size: 1.5rem;">&</span><br>Teresa Romero González</p>
             </div>
 
             <div class="countdown-section">
@@ -556,36 +541,9 @@
                 </div>
             </div>
 
-            <div class="cinematic-frame anim-night">
-                <div class="moon"></div>
-                <div class="shooting-star-layer">
-                    <div class="s-star"></div>
-                    <div class="s-star" style="top: 40%; left: -20%; animation-delay: 2s; animation-duration: 7s;"></div>
-                </div>
-                <!-- Estrellas de fondo -->
-                <div id="stars-night" style="position: absolute; inset:0; z-index: 1;"></div>
-                
-                <!-- Silueta Organica y detallada de los Sapos (Estilo Disney) -->
-                <svg class="frog-silhouette" viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Base (Tronco/Lirio) -->
-                    <path d="M 10 140 Q 100 130 190 140 Q 195 145 185 150 L 15 150 Z" fill="#05101a"/>
-                    
-                    <!-- Sapito Naveen (Izquierda) -->
-                    <path d="M 60 135 C 50 110 55 90 70 80 C 80 70 90 75 95 85 C 90 100 85 110 80 135 Z" fill="#05101a"/>
-                    <circle cx="75" cy="72" r="9" fill="#05101a"/> <!-- Cabeza -->
-                    <circle cx="70" cy="67" r="4" fill="#05101a"/> <!-- Ojo 1 -->
-                    <circle cx="82" cy="65" r="4" fill="#05101a"/> <!-- Ojo 2 -->
-                    <!-- Brazo Naveen abrazando -->
-                    <path d="M 85 85 Q 105 88 115 100" fill="none" stroke="#05101a" stroke-width="4" stroke-linecap="round"/>
-
-                    <!-- Sapita Tiana (Derecha) -->
-                    <path d="M 135 135 C 145 110 140 90 125 80 C 115 70 105 75 100 85 C 105 100 110 110 115 135 Z" fill="#05101a"/>
-                    <circle cx="120" cy="72" r="8" fill="#05101a"/> <!-- Cabeza -->
-                    <circle cx="113" cy="66" r="3.5" fill="#05101a"/> <!-- Ojo 1 -->
-                    <circle cx="125" cy="67" r="3.5" fill="#05101a"/> <!-- Ojo 2 -->
-                    <!-- Corona pequeña -->
-                    <path d="M 115 63 L 118 57 L 121 62 L 125 58 L 124 64 Z" fill="#05101a"/>
-                </svg>
+            <!-- Foto 2 -->
+            <div class="photo-frame">
+                <img src="foto2xv.jpeg" alt="Pao Quinceañera 2" onerror="this.src='https://placehold.co/600x800/0a1f12/d4af37?text=foto2xv.jpeg';">
             </div>
 
             <div class="locations-section">
@@ -602,6 +560,11 @@
                     <p style="font-size: 0.95rem; margin-top: 10px;">Diagonal Minas 56, Col. San Rafael Chamapa, CP 53660, Naucalpan, México</p>
                     <a href="https://www.google.com/maps/search/?api=1&query=Diagonal+Minas+56,+San+Rafael+Chamapa,+Naucalpan" target="_blank" class="btn">Ver en Mapa</a>
                 </div>
+            </div>
+
+            <!-- Foto 3 -->
+            <div class="photo-frame">
+                <img src="foto3xv.jpeg" alt="Pao Quinceañera 3" onerror="this.src='https://placehold.co/600x800/0a1f12/d4af37?text=foto3xv.jpeg';">
             </div>
 
             <div class="itinerary-section">
@@ -625,51 +588,19 @@
                 </div>
             </div>
 
-            <div class="cinematic-frame anim-altar">
-                <div class="altar-lights"></div>
-                <div id="fireflies-altar" style="position: absolute; inset:0; z-index: 5;"></div>
-                
-                <!-- Balcón estilo New Orleans y Silueta de Pao -->
-                <svg width="100%" height="100%" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" style="z-index: 10;">
-                    <!-- Rejas del Balcón Art Deco -->
-                    <path d="M 0 350 L 400 350 M 50 350 L 50 400 M 100 350 L 100 400 M 150 350 L 150 400 M 200 350 L 200 400 M 250 350 L 250 400 M 300 350 L 300 400 M 350 350 L 350 400" stroke="var(--gold-rich)" stroke-width="4" opacity="0.6"/>
-                    <path d="M 0 320 Q 200 280 400 320" fill="none" stroke="var(--gold-dark)" stroke-width="8" opacity="0.8"/>
-                    
-                    <!-- Silueta de la Quinceañera (Basada en los colores de la foto) -->
-                    <g transform="translate(200, 340) scale(1.3)">
-                        <!-- Resplandor mágico de Pao -->
-                        <circle cx="0" cy="-80" r="70" fill="rgba(212, 175, 55, 0.3)" filter="blur(15px)"/>
-                        
-                        <!-- Falda Dorada Voluminosa -->
-                        <path d="M -70 0 C -50 -100 -20 -120 0 -120 C 20 -120 50 -100 70 0 Z" fill="var(--gold-rich)"/>
-                        <path d="M -50 0 C -30 -100 -10 -120 0 -120 C 10 -120 30 -100 50 0 Z" fill="#e6c27a"/> <!-- Capa de brillo -->
-                        
-                        <!-- Corset Verde Salvia -->
-                        <path d="M -15 -170 C -20 -120 20 -120 15 -170 Z" fill="var(--tiana-green)"/>
-                        
-                        <!-- Torso, brazos (guantes dorados) y Cabeza -->
-                        <path d="M -15 -170 C -30 -130 -40 -100 -40 -100" fill="none" stroke="var(--gold-rich)" stroke-width="6" stroke-linecap="round"/> <!-- Brazo Izq -->
-                        <path d="M 15 -170 C 30 -130 40 -100 40 -100" fill="none" stroke="var(--gold-rich)" stroke-width="6" stroke-linecap="round"/> <!-- Brazo Der -->
-                        
-                        <!-- Cabeza y cabello -->
-                        <circle cx="0" cy="-195" r="14" fill="#0a120c"/> <!-- Silueta oscura -->
-                        <path d="M -12 -195 C -15 -170 -18 -150 -18 -150" fill="none" stroke="#0a120c" stroke-width="3"/> <!-- Mechón 1 -->
-                        <path d="M 12 -195 C 15 -170 18 -150 18 -150" fill="none" stroke="#0a120c" stroke-width="3"/> <!-- Mechón 2 -->
-                        
-                        <!-- Tiara -->
-                        <path d="M -10 -210 L -5 -218 L 0 -210 L 5 -218 L 10 -210 L 12 -206 L -12 -206 Z" fill="var(--gold-light)"/>
-                    </g>
-                </svg>
+            <!-- Foto 4 -->
+            <div class="photo-frame">
+                <img src="foto4xv.jpeg" alt="Pao Quinceañera 4" onerror="this.src='https://placehold.co/600x800/0a1f12/d4af37?text=foto4xv.jpeg';">
             </div>
 
             <div class="gifts-section">
-                <h3 class="magical-text" style="font-size: 4rem;">Lluvia de Sobres</h3>
+                <h3 class="magical-text" style="font-size: 4rem;">Obsequios</h3>
                 <p>La presencia es el mejor regalo que puedo recibir. Si además deseas tener un detalle conmigo y no sabes qué, el día del evento podrás obsequiarme lluvia de sobres.</p>
                 <div class="envelope-icon">✉️✨</div>
             </div>
             
             <div class="reactions-section">
-                <h3 class="script-font" style="font-size: 3.5rem; margin-bottom: 20px; color: var(--primary-green);">Manda tu cariño</h3>
+                <h3 class="script-font" style="font-size: 3.5rem; margin-bottom: 20px; color: var(--gold-light);">Manda tu cariño</h3>
                 <button class="reaction-btn" onclick="triggerReaction('💖', event)">¡Felicidades!</button>
                 <button class="reaction-btn" onclick="triggerReaction('✨', event)">¡Magia!</button>
                 <button class="reaction-btn" onclick="triggerReaction('🐸', event)">¡Ahí estaré!</button>
@@ -692,46 +623,63 @@
             audio.currentTime = 55; 
             audio.play().catch(e => console.log("Se requiere interacción adicional para reproducir audio."));
             
-            // Explosión de Confeti Premium (Chispas y Hojas)
+            // Explosión de Confeti Premium
             shootPremiumConfetti();
+            
+            // Iniciar Lluvia de Flores constante
+            startFlowerRain();
         }
 
-        // --- 2. SISTEMA DE CONFETI PREMIUM (Pixar Style) ---
+        // --- 2. SISTEMA DE CONFETI PREMIUM (Al abrir) ---
         function shootPremiumConfetti() {
-            const count = 120;
+            const count = 100;
             for(let i=0; i<count; i++) {
                 setTimeout(() => {
                     let particle = document.createElement('div');
-                    // Alternar entre chispas doradas y hojas verdes
-                    particle.className = Math.random() > 0.4 ? 'sparkle-confetti' : 'leaf-confetti';
-                    
+                    particle.className = 'sparkle-confetti';
                     particle.style.left = Math.random() * 100 + 'vw';
                     particle.style.top = -20 + 'px';
                     
-                    // Físicas aleatorias
-                    let duration = (Math.random() * 3 + 2); // 2 a 5 segundos cayendo
+                    let duration = (Math.random() * 3 + 2);
                     particle.style.animationDuration = duration + 's';
                     
-                    // Tamaños variados
                     let scale = Math.random() * 0.8 + 0.5;
                     particle.style.transform = `scale(${scale})`;
                     
                     document.body.appendChild(particle);
-                    
-                    // Limpieza del DOM
                     setTimeout(() => particle.remove(), duration * 1000);
-                }, i * 20); // Disparo en cascada
+                }, i * 15);
             }
         }
 
-        // --- 3. BOTONES DE REACCIÓN MÁGICA ---
+        // --- 3. SISTEMA DE LLUVIA CONTINUA DE FLORES ---
+        function startFlowerRain() {
+            const container = document.getElementById('flower-rain-container');
+            setInterval(() => {
+                let flower = document.createElement('div');
+                flower.className = 'falling-flower';
+                // Alternar entre emojis de loto, hojas y destellos
+                const items = ['🌸', '🍃', '✨', '🌼'];
+                flower.innerText = items[Math.floor(Math.random() * items.length)];
+                
+                flower.style.left = Math.random() * 100 + 'vw';
+                flower.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
+                
+                let duration = (Math.random() * 10 + 10); // Caen lento (10 a 20 seg)
+                flower.style.animationDuration = duration + 's';
+                
+                container.appendChild(flower);
+                setTimeout(() => flower.remove(), duration * 1000);
+            }, 800); // Crea una flor nueva cada 0.8 segundos
+        }
+
+        // --- 4. BOTONES DE REACCIÓN MÁGICA ---
         function triggerReaction(emoji, event) {
-            for(let i=0; i<12; i++) {
+            for(let i=0; i<15; i++) {
                 let particle = document.createElement('div');
                 particle.className = 'reaction-particle';
                 particle.innerText = emoji;
                 
-                // Dispersión desde el click
                 let spreadX = (Math.random() * 100) - 50;
                 particle.style.left = (event.clientX + spreadX) + 'px';
                 particle.style.top = (event.clientY - 20) + 'px';
@@ -741,46 +689,40 @@
             }
         }
 
-        // --- 4. GENERADOR DE LUCIÉRNAGAS Y ESTRELLAS (Para animaciones CSS) ---
+        // --- 5. GENERADOR DE LUCIÉRNAGAS PREMIUM (Para el pantano) ---
         function createFireflies(containerId, count) {
             const container = document.getElementById(containerId);
             if(!container) return;
             for(let i=0; i<count; i++) {
                 let f = document.createElement('div');
                 f.className = 'firefly';
+                
+                // Mezcla de colores (dorado y verde neón)
+                if(Math.random() > 0.4) {
+                    f.classList.add('ff-gold');
+                } else {
+                    f.classList.add('ff-green');
+                }
+
+                // Tamaños dinámicos
+                let size = Math.random() * 5 + 3;
+                f.style.width = size + 'px';
+                f.style.height = size + 'px';
+                
                 f.style.left = Math.random() * 100 + '%';
                 f.style.top = Math.random() * 100 + '%';
-                f.style.animationDelay = (Math.random() * 5) + 's'; // Desfase
+                f.style.animationDelay = (Math.random() * 5) + 's';
+                
                 container.appendChild(f);
-            }
-        }
-
-        function createStars() {
-            const starsLayer = document.getElementById('stars-night');
-            if(!starsLayer) return;
-            for(let i=0; i<60; i++) {
-                let star = document.createElement('div');
-                star.style.position = 'absolute';
-                star.style.width = (Math.random() * 2 + 1) + 'px';
-                star.style.height = star.style.width;
-                star.style.backgroundColor = '#fff';
-                star.style.borderRadius = '50%';
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                star.style.opacity = Math.random() * 0.8 + 0.2;
-                star.style.boxShadow = '0 0 5px #fff';
-                starsLayer.appendChild(star);
             }
         }
         
         // Inicializar luces al cargar
         window.onload = function() {
-            createFireflies('fireflies-swamp', 25);
-            createFireflies('fireflies-altar', 20);
-            createStars();
+            createFireflies('fireflies-swamp', 45); // Aumentamos la cantidad a 45 para que se vea exuberante
         };
 
-        // --- 5. CONTADOR REGRESIVO EXACTO ---
+        // --- 6. CONTADOR REGRESIVO EXACTO ---
         const eventDate = new Date("Dec 5, 2026 18:00:00").getTime();
         
         const timer = setInterval(function() {
