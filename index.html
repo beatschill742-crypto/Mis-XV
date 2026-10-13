@@ -4,24 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mis XV Años - Pao</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600;700;900&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-green: #06120a; /* Verde muy profundo del pantano nocturno */
-            --tiana-green: #2d4c31; /* Verde esmeralda rico */
-            --tiana-light: #5a805c; /* Verde salvia botánico */
-            --gold-light: #fdf0c9; /* Dorado crema brillante */
-            --gold-rich: #d4af37; /* Dorado metálico puro */
-            --gold-dark: #8c7322; /* Dorado viejo */
-            --text-light: #f8f6f0;
+            --primary-color: #2b4c3b; /* Verde oscuro pantano */
+            --secondary-color: #d4af37; /* Dorado metálico */
+            --bg-color: #1a2f24; /* Fondo verde profundo */
+            --text-light: #e8f0eb;
+            --text-dark: #111;
         }
         
+        * {
+            box-sizing: border-box;
+        }
+
         body, html {
             margin: 0;
             padding: 0;
             font-family: 'Playfair Display', serif;
-            background-color: var(--primary-green);
+            background-color: var(--bg-color);
             color: var(--text-light);
             overflow-x: hidden;
             scroll-behavior: smooth;
@@ -29,690 +30,653 @@
 
         h1, h2, h3, .script-font {
             font-family: 'Great Vibes', cursive;
+            color: var(--secondary-color);
             margin: 0;
-            font-weight: 400;
-            line-height: 1.3;
-            padding: 5px 0; /* Evita que las letras cursivas altas se corten */
+            font-weight: normal;
+            line-height: 1.2;
+            padding: 10px; /* Para que no se corte la P y los rizos */
         }
 
-        /* Texto Mágico con Brillo Dorado */
-        .magical-text {
-            background: linear-gradient(to right, var(--gold-light), #fff, var(--gold-rich));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0px 4px 20px rgba(212, 175, 55, 0.4);
-        }
-
+        /* Overlay Envelope */
         #envelope-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100vh;
-            background-image: url('image_6e3cd5.jpg');
+            background-image: linear-gradient(rgba(26, 47, 36, 0.8), rgba(26, 47, 36, 0.9)), url('image_6e3cd5.jpg');
             background-size: cover;
             background-position: center;
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 9999;
+            z-index: 1000;
             transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1), opacity 1.5s ease;
-        }
-        
-        #envelope-screen::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle, rgba(6,18,10,0.5) 0%, rgba(6,18,10,0.95) 100%);
-            z-index: 0;
         }
 
         #envelope-screen.open {
-            transform: translateY(-100vh) scale(1.05);
+            transform: translateY(-100vh);
             opacity: 0;
             pointer-events: none;
         }
         
         .envelope-content {
-            background: linear-gradient(135deg, rgba(6, 18, 10, 0.95), rgba(15, 36, 21, 0.98));
-            padding: 50px 30px;
-            border-radius: 12px;
+            background: rgba(20, 35, 27, 0.85);
+            padding: 40px;
+            border-radius: 15px;
             text-align: center;
-            box-shadow: 0 30px 70px rgba(0,0,0,0.9), inset 0 0 0 2px var(--gold-rich), inset 0 0 20px rgba(212,175,55,0.15);
-            z-index: 1;
-            position: relative;
-            max-width: 85%;
-            width: 450px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            border: 2px solid var(--secondary-color);
+            max-width: 90%;
+            backdrop-filter: blur(5px);
         }
 
-        .envelope-content h1 {
-            font-size: 4rem;
-            margin-bottom: 15px;
-            padding: 0 10px; /* Para que la 'P' no se corte */
-        }
-
-        .wax-seal {
-            width: 70px;
-            height: 70px;
-            background: radial-gradient(circle, #f7d774, #b48e1a, #685006);
-            border-radius: 50%;
-            margin: -85px auto 25px auto;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.8), inset 0 2px 5px rgba(255,255,255,0.5);
-            border: 2px solid #fdf0c9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.5rem;
-            color: #3b2e05;
-            text-shadow: 1px 1px 1px rgba(255,255,255,0.6);
-            padding-top: 5px; /* Centrado fino de la cursiva */
-        }
-
-        .quote-text {
-            font-size: 1.15rem;
-            color: #e2e8e4;
-            margin-bottom: 30px;
+        .envelope-content p.frase-magica {
+            font-size: 1.3rem;
             font-style: italic;
-            font-weight: 300;
-            line-height: 1.6;
-            padding: 0 15px;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+            margin-bottom: 30px;
+            color: #d4af37;
+            line-height: 1.5;
         }
 
         .open-btn {
-            background: linear-gradient(135deg, var(--gold-rich), var(--gold-dark));
-            color: #000;
-            border: 1px solid var(--gold-light);
-            padding: 16px 45px;
+            background: linear-gradient(135deg, #d4af37, #aa8620);
+            color: #111;
+            border: none;
+            padding: 15px 40px;
             font-size: 1.2rem;
-            font-weight: 700;
-            border-radius: 4px;
+            border-radius: 30px;
             cursor: pointer;
             font-family: 'Playfair Display', serif;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            transition: all 0.4s ease;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-            position: relative;
-            overflow: hidden;
+            font-weight: bold;
+            transition: transform 0.3s;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
         }
 
         .open-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4);
-            background: linear-gradient(135deg, var(--gold-light), var(--gold-rich));
+            transform: scale(1.05);
         }
 
+        /* Main Content */
         .container {
-            max-width: 900px;
+            width: 100%;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 40px 20px;
-            background-image: url('WhatsApp%20Image%202026-10-12%20at%202.07.53%20PM.jpeg');
+            background-image: linear-gradient(rgba(26, 47, 36, 0.6), rgba(26, 47, 36, 0.9)), url('WhatsApp%20Image%202026-10-12%20at%202.07.53%20PM.jpeg');
             background-size: cover;
             background-position: center top;
             background-attachment: fixed;
             min-height: 100vh;
             position: relative;
-        }
-        
-        .content-overlay {
-            background: rgba(6, 18, 10, 0.88); /* Fondo verde pantano profundo */
-            padding: 80px 50px;
-            border-radius: 12px;
-            box-shadow: 0 20px 80px rgba(0,0,0,0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(212, 175, 55, 0.25);
-            position: relative;
-            z-index: 10;
+            padding-bottom: 50px;
         }
 
-        /* Enredaderas Cruzadas Reales (Vectores) */
-        .crossing-vines {
-            position: absolute;
+        /* Efecto Hojas y Enredaderas SVG (Sin Emojis) */
+        .vines-overlay {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 11;
-            overflow: hidden;
-            opacity: 0.15; /* Sutil y elegante */
+            z-index: 10;
+            opacity: 0.15;
+            background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M-50,50 Q150,150 350,50 T750,50 T1150,50' fill='none' stroke='%238fbc8f' stroke-width='3'/%3E%3Cpath d='M-50,250 Q150,350 350,250 T750,250 T1150,250' fill='none' stroke='%238fbc8f' stroke-width='2'/%3E%3Cpath d='M-50,550 Q150,450 350,550 T750,550 T1150,550' fill='none' stroke='%238fbc8f' stroke-width='4'/%3E%3C/svg%3E");
+            animation: sway 15s ease-in-out infinite alternate;
         }
 
-        .vine-path {
-            position: absolute;
-            animation: swayVine 12s ease-in-out infinite alternate;
-            transform-origin: top left;
-        }
-        .vine-path-right {
-            position: absolute;
-            right: 0;
-            animation: swayVineRight 14s ease-in-out infinite alternate;
-            transform-origin: top right;
+        @keyframes sway {
+            0% { transform: translateX(-20px) translateY(10px); }
+            100% { transform: translateX(20px) translateY(-10px); }
         }
 
-        @keyframes swayVine {
-            0% { transform: rotate(0deg) scale(1); }
-            100% { transform: rotate(3deg) scale(1.02); }
-        }
-        @keyframes swayVineRight {
-            0% { transform: rotate(0deg) scale(1); }
-            100% { transform: rotate(-3deg) scale(1.02); }
-        }
-
-        .header { text-align: center; margin-bottom: 50px; }
-        .header h1 { 
-            font-size: 7.5rem; 
-            line-height: 1.1; 
-            margin: 10px 0;
-            padding: 0 20px; /* Evita que la P gigante se corte */
-        }
-        .header .subtitle {
-            font-size: 1.1rem;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            color: var(--gold-light);
-            font-weight: 600;
-        }
-
-        .photo-frame {
-            text-align: center;
-            margin: 70px 0;
-            position: relative;
-            padding: 20px;
-        }
-        
-        .photo-frame img {
-            width: 100%;
-            max-width: 500px;
-            border-radius: 8px;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
-            border: 3px solid var(--gold-rich);
-            display: block;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-            transition: transform 0.5s ease;
-        }
-
-        .photo-frame img:hover {
-            transform: scale(1.02);
-        }
-
-        /* Adornos vectoriales (Hojas de loto doradas/verdes) en las fotos */
-        .corner-decor {
-            position: absolute;
-            width: 80px;
-            height: 80px;
-            z-index: 3;
-            opacity: 0.9;
-            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.6));
-        }
-        .decor-tl { top: -10px; left: calc(50% - 270px); }
-        .decor-br { bottom: -10px; right: calc(50% - 270px); transform: rotate(180deg); }
-
-        .family-section {
-            text-align: center; margin: 70px 0; line-height: 1.6;
-            padding: 50px 30px; 
-            background: linear-gradient(to bottom, rgba(212, 175, 55, 0.02), rgba(212, 175, 55, 0.08));
-            border-top: 1px solid rgba(212, 175, 55, 0.2); 
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2); 
-            border-radius: 4px;
-        }
-        .family-section h3 { font-size: 3rem; margin-bottom: 20px; }
-        .family-section p { font-size: 1.4rem; margin-bottom: 40px; font-weight: 400; color: #eef2f0; }
-
-        .countdown-section {
-            text-align: center; margin: 70px 0; padding: 60px 20px;
-            background: linear-gradient(135deg, var(--tiana-green), var(--primary-green));
-            border-radius: 8px; color: var(--gold-light);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
-            border: 1px solid var(--gold-rich);
-            position: relative; overflow: hidden;
-        }
-
-        .countdown-section h3 { font-size: 4.5rem; margin-bottom: 35px; text-shadow: 2px 2px 15px rgba(0,0,0,0.9); position: relative; z-index: 2;}
-
-        .countdown { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; position: relative; z-index: 2;}
-        .time-box {
-            background: rgba(0,0,0,0.5); padding: 20px 25px; border-radius: 6px; min-width: 90px;
-            backdrop-filter: blur(8px); border: 1px solid rgba(212,175,55,0.3);
-            box-shadow: inset 0 0 15px rgba(212,175,55,0.1);
-        }
-        .time-box span { display: block; font-size: 3.5rem; font-weight: 700; color: var(--gold-rich); font-family: 'Playfair Display', serif; }
-        .time-box p { margin: 5px 0 0 0; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 3px; color: #ccc;}
-
-        .locations-section { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; margin: 70px 0; }
-        .location-card {
-            flex: 1; min-width: 300px; background: rgba(6, 18, 10, 0.7); padding: 45px 35px;
-            border-radius: 6px; text-align: center;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
-            border: 1px solid rgba(212, 175, 55, 0.4);
-            border-top: 5px solid var(--gold-rich);
-            transition: transform 0.4s ease;
-        }
-        .location-card:hover { transform: translateY(-5px); }
-        .location-card h3 { font-size: 3rem; margin-bottom: 20px; color: var(--gold-light); }
-        .location-card p { font-size: 1.05rem; color: #d1dbd4; line-height: 1.7; }
-
-        .btn {
-            display: inline-block; margin-top: 30px; padding: 14px 40px;
-            background-color: transparent; color: var(--gold-rich);
-            text-decoration: none; border-radius: 4px; font-weight: 600; letter-spacing: 2px;
-            text-transform: uppercase; transition: all 0.3s;
-            border: 1px solid var(--gold-rich);
-        }
-        .btn:hover { background-color: var(--gold-rich); color: #000; }
-
-        .itinerary-section { margin: 90px 0; }
-        .itinerary-section h2 { text-align: center; font-size: 5rem; margin-bottom: 60px; }
-
-        .timeline { position: relative; max-width: 600px; margin: 0 auto; }
-        .timeline::after {
-            content: ''; position: absolute; width: 1px; background: var(--gold-rich);
-            top: 0; bottom: 0; left: 50%; margin-left: -0.5px;
-            opacity: 0.5;
-        }
-        .timeline-item { padding: 20px 40px; position: relative; width: 50%; box-sizing: border-box; margin-bottom: 30px; }
-        .timeline-item::after {
-            content: ''; position: absolute; width: 16px; height: 16px;
-            background-color: var(--gold-rich); 
-            top: 30px; border-radius: 50%; z-index: 1; box-shadow: 0 0 20px rgba(212,175,55,0.9);
-        }
-        .left { left: 0; text-align: right; }
-        .right { left: 50%; }
-        .right::after { left: -8px; }
-        .left::after { right: -8px; }
-
-        .timeline-content {
-            padding: 25px; background: rgba(15, 36, 21, 0.6); border-radius: 6px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4); border: 1px solid rgba(212, 175, 55, 0.2);
-        }
-        .timeline-content h4 { margin: 0; font-size: 1.6rem; color: var(--gold-light); font-weight: 700; }
-        .timeline-content p { margin: 8px 0 0 0; font-size: 1.15rem; color: #b9c7be; font-style: italic; }
-
-        .gifts-section {
-            text-align: center; margin: 80px 0; padding: 60px 50px; background: rgba(6, 18, 10, 0.9);
-            border-radius: 8px; box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-            border: 1px dashed var(--gold-rich); position: relative;
-        }
-        .gifts-section h3 { font-size: 4.5rem; }
-        .gifts-section p { font-size: 1.25rem; line-height: 1.9; color: #d1dbd4; margin-top: 25px; }
-
-        .reactions-section {
-            text-align: center; margin: 70px 0; padding: 50px; background: rgba(212, 175, 55, 0.03);
-            border-radius: 8px; border: 1px solid rgba(212, 175, 55, 0.15);
-        }
-        .reaction-btn {
-            background: rgba(0,0,0,0.4); border: 1px solid var(--gold-rich); padding: 14px 30px;
-            border-radius: 30px; margin: 10px; cursor: pointer; font-family: 'Playfair Display', serif;
-            font-weight: 600; color: var(--gold-light); transition: all 0.3s; font-size: 1.1rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.4); text-transform: uppercase; letter-spacing: 2px;
-        }
-        .reaction-btn:hover { background: var(--gold-rich); color: #000; transform: translateY(-3px); }
-
-        /* Contenedor de lluvia de hojas (cero emojis) */
-        #botanical-rain-container {
+        #leaf-container {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
-            z-index: 9997;
+            z-index: 5;
             overflow: hidden;
         }
 
-        .falling-leaf {
+        .leaf {
             position: absolute;
-            top: -10vh;
-            animation: fallContinuous linear infinite;
-            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
+            top: -50px;
+            width: 25px;
+            height: 25px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236b8e23'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z' opacity='0.7'/%3E%3Cpath d='M12 4c-4.41 0-8 3.59-8 8s3.59 8 8 8 8-3.59 8-8-3.59-8-8-8zm-1 13h-2v-4H7v-2h2V9h2v2h2v2h-2v4z'/%3E%3C/svg%3E");
+            background-size: cover;
+            animation: fall linear infinite;
         }
 
-        @keyframes fallContinuous {
-            0% { transform: translateY(0) rotate(0deg) translateX(0); opacity: 0; }
+        @keyframes fall {
+            0% { transform: translateY(-50px) rotate(0deg); opacity: 0; }
             10% { opacity: 0.8; }
             90% { opacity: 0.8; }
-            100% { transform: translateY(110vh) rotate(360deg) translateX(100px); opacity: 0; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
         }
 
-        /* Luciérnagas de Fondo Puro CSS */
-        #fireflies-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0; /* Detrás de todo el contenido */
-            overflow: hidden;
-        }
-
-        .firefly-bg {
+        /* Luciérnagas de fondo */
+        .firefly {
             position: absolute;
+            background: #d4af37;
             border-radius: 50%;
-            background-color: #d1ffc4;
-            box-shadow: 0 0 15px 3px #66ff33, 0 0 30px #fff;
+            box-shadow: 0 0 10px #d4af37, 0 0 20px #e6c27a;
+            animation: float-up linear infinite, blink ease-in-out infinite alternate;
             opacity: 0;
-            animation: floatUpBg linear infinite;
         }
 
-        @keyframes floatUpBg {
-            0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
-            20% { opacity: 0.6; }
-            80% { opacity: 0.6; }
-            100% { transform: translateY(-20vh) scale(1.2); opacity: 0; }
+        @keyframes float-up {
+            0% { transform: translateY(100vh) scale(0.5); }
+            100% { transform: translateY(-100px) scale(1); }
+        }
+        @keyframes blink {
+            0% { opacity: 0.2; }
+            100% { opacity: 1; }
         }
 
-        /* Reacciones Mágicas */
-        .reaction-particle {
-            position: fixed; pointer-events: none; z-index: 9999; font-size: 2.5rem;
-            animation: floatMagic 2s ease-out forwards; filter: drop-shadow(0 0 15px rgba(255,255,255,0.6));
-        }
-        @keyframes floatMagic {
-            0% { transform: translateY(0) scale(0.5) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(-250px) scale(1.5) rotate(25deg); opacity: 0; }
+        /* Content Sections */
+        .header {
+            text-align: center;
+            padding: 60px 20px 30px;
+            position: relative;
+            z-index: 20;
         }
 
-        @media (max-width: 768px) {
-            .container {
-                padding: 0; /* Cero márgenes exteriores en móvil */
-            }
-            .content-overlay {
-                padding: 60px 20px; /* Padding interno más reducido */
-                border-radius: 0; /* Se adapta a toda la pantalla */
-                border-left: none;
-                border-right: none;
-                margin-top: 0;
-                margin-bottom: 0;
-                min-height: 100vh;
-            }
-            .header h1 { font-size: 5rem; padding: 0 5px; }
-            .envelope-content { padding: 40px 20px; width: 90%; }
-            .envelope-content h1 { font-size: 3.5rem; }
-            
-            .timeline::after { left: 20px; }
-            .timeline-item { width: 100%; padding-left: 60px; padding-right: 10px; text-align: left; }
-            .timeline-item::after { left: 12px; right: auto; top: 25px; }
-            .left, .right { left: 0; }
-            
-            .countdown-section h3 { font-size: 3.5rem; }
-            .time-box { padding: 15px; min-width: 70px; }
-            .time-box span { font-size: 2.5rem; }
-            
-            .decor-tl { left: -5px; }
-            .decor-br { right: -5px; }
+        .header h1 {
+            font-size: 5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin: 10px 0;
         }
+        
+        .header .subtitle {
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #a9c7b0;
+        }
+
+        /* Marcos de Fotos Premium */
+        .photo-frame {
+            position: relative;
+            width: 90%;
+            max-width: 500px;
+            margin: 40px auto;
+            border: 4px solid var(--secondary-color);
+            border-radius: 10px;
+            padding: 10px;
+            background: rgba(43, 76, 59, 0.5);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            z-index: 20;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            display: block;
+            border-radius: 5px;
+        }
+
+        /* Adornos SVG en las esquinas de las fotos */
+        .photo-frame::before, .photo-frame::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23d4af37'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12c0 2.22.73 4.28 1.96 5.96L2.22 21.78l3.82-1.74C7.72 21.27 9.78 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.85 0-3.58-.57-5-1.54l-2.02.92.92-2.02C4.57 15.58 4 13.85 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z'/%3E%3C/svg%3E");
+            background-size: cover;
+        }
+
+        .photo-frame::before { top: -20px; left: -20px; }
+        .photo-frame::after { bottom: -20px; right: -20px; transform: rotate(180deg); }
+
+        /* Animación del Pantano */
+        .swamp-animation {
+            width: 90%;
+            max-width: 600px;
+            height: 300px;
+            margin: 40px auto;
+            border-radius: 15px;
+            border: 3px solid var(--secondary-color);
+            position: relative;
+            overflow: hidden;
+            background-image: url('image_6ebcb5.png');
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            z-index: 20;
+        }
+
+        .swamp-water {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(transparent, rgba(13, 31, 23, 0.9));
+            animation: waves 3s infinite alternate;
+        }
+
+        @keyframes waves {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(5px); }
+        }
+
+        .frogs-container {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            animation: breathe 3s ease-in-out infinite;
+        }
+
+        .frogs-container img {
+            width: 100%;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.4));
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.02); }
+        }
+
+        /* Secciones de Texto (Padres, Ubicaciones, Itinerario) */
+        .info-section {
+            text-align: center;
+            margin: 40px 20px;
+            padding: 30px;
+            background: rgba(20, 35, 27, 0.85);
+            border-radius: 15px;
+            border-top: 2px solid var(--secondary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            position: relative;
+            z-index: 20;
+            backdrop-filter: blur(5px);
+        }
+
+        .info-section h3 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .info-section p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .time-box {
+            background: rgba(212, 175, 55, 0.1);
+            padding: 15px 10px;
+            border-radius: 10px;
+            min-width: 70px;
+            border: 1px solid var(--secondary-color);
+        }
+
+        .time-box span {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 25px;
+            background-color: var(--secondary-color);
+            color: var(--bg-color);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #fff;
+            box-shadow: 0 0 15px var(--secondary-color);
+        }
+
+        /* Formulario RSVP */
+        .rsvp-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .rsvp-form label {
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        .rsvp-form input, .rsvp-form select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid var(--secondary-color);
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .rsvp-form input::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .rsvp-form button {
+            background: linear-gradient(135deg, #d4af37, #aa8620);
+            color: #111;
+            border: none;
+            padding: 15px;
+            font-size: 1.2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: 'Playfair Display', serif;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        #form-message {
+            display: none;
+            color: #d4af37;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 15px;
+            padding: 10px;
+            border: 1px dashed #d4af37;
+            border-radius: 5px;
+        }
+
+        /* Timeline (Itinerario) */
+        .timeline {
+            position: relative;
+            max-width: 400px;
+            margin: 20px auto 0;
+            text-align: left;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: var(--secondary-color);
+            top: 0;
+            bottom: 0;
+            left: 20px;
+        }
+
+        .timeline-item {
+            padding: 10px 0 20px 45px;
+            position: relative;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            left: 14px;
+            background-color: var(--bg-color);
+            border: 3px solid var(--secondary-color);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-content h4 {
+            margin: 0;
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+        }
+
+        /* Audio oculto */
+        #bg-music { display: none; }
+
     </style>
 </head>
 <body>
 
+    <!-- Pantalla de Bienvenida (Sobre) -->
     <div id="envelope-screen">
         <div class="envelope-content">
-            <div class="wax-seal">P</div>
-            <h1 class="magical-text">Mis XV Años</h1>
-            <p class="quote-text">"La estrella te guiará una parte del camino, tú tienes que trabajar duro y dar todo tu empeño y entonces podrás hacer tu sueño realidad."</p>
+            <h1 style="font-size: 4rem;">Pao</h1>
+            <p class="frase-magica">"La estrella te guiará una parte del camino, tú tienes que trabajar duro y dar todo tu empeño y entonces podrás hacer tu sueño realidad."</p>
             <button class="open-btn" onclick="openInvitation()">Abrir Invitación</button>
         </div>
     </div>
 
-    <!-- Audio Oculto -->
+    <!-- Música -->
     <audio id="bg-music" loop>
         <source src="micancionxv.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Luciérnagas de Fondo -->
-    <div id="fireflies-container"></div>
+    <div class="vines-overlay"></div>
+    <div id="leaf-container"></div>
+    <div id="firefly-container"></div>
 
-    <!-- Lluvia Botánica de Vectores -->
-    <div id="botanical-rain-container"></div>
-
-    <!-- Contenedor Principal Full Screen -->
     <div class="container">
-        <div class="content-overlay">
-            
-            <!-- Enredaderas Mágicas Cruzadas (Vectores SVG directos) -->
-            <div class="crossing-vines">
-                <!-- Enredadera Izquierda a Derecha -->
-                <svg class="vine-path" viewBox="0 0 800 1200" width="100%" height="100%" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M -50 -50 Q 200 300 400 600 T 900 1300" stroke="var(--tiana-light)" stroke-width="8" stroke-linecap="round"/>
-                    <path d="M 0 100 Q 300 400 500 800 T 1000 1400" stroke="var(--tiana-green)" stroke-width="12" stroke-linecap="round"/>
-                    <!-- Hojas simples dibujadas en el vector -->
-                    <path d="M 200 300 Q 230 280 250 320 Q 210 330 200 300 Z" fill="var(--tiana-green)"/>
-                    <path d="M 400 600 Q 440 580 450 630 Q 390 640 400 600 Z" fill="var(--tiana-light)"/>
-                    <path d="M 300 400 Q 330 380 350 420 Q 310 430 300 400 Z" fill="var(--tiana-green)"/>
-                </svg>
-                
-                <!-- Enredadera Derecha a Izquierda -->
-                <svg class="vine-path-right" viewBox="0 0 800 1200" width="100%" height="100%" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M 850 -50 Q 600 300 400 600 T -100 1300" stroke="var(--tiana-light)" stroke-width="6" stroke-linecap="round"/>
-                    <path d="M 800 150 Q 500 450 300 850 T -200 1450" stroke="var(--tiana-green)" stroke-width="10" stroke-linecap="round"/>
-                    <path d="M 600 300 Q 570 280 550 320 Q 590 330 600 300 Z" fill="var(--tiana-green)"/>
-                    <path d="M 400 600 Q 360 580 350 630 Q 410 640 400 600 Z" fill="var(--tiana-light)"/>
-                </svg>
-            </div>
-
-            <div class="header">
-                <p class="subtitle">Con la bendición de Dios y mis padres</p>
-                <h1 class="magical-text">Pao</h1>
-                <p class="script-font" style="font-size: 3.5rem; color: var(--gold-light); margin-top: 10px;">Mis Quince Años</p>
-            </div>
-
-            <!-- Foto 1 (Principal) -->
-            <div class="photo-frame">
-                <!-- SVG Decorativo Esquina Superior -->
-                <svg class="corner-decor decor-tl" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10 10 Q 50 10 90 50 Q 90 10 10 10 Z" fill="var(--gold-rich)"/>
-                    <path d="M10 10 Q 10 50 50 90 Q 10 90 10 10 Z" fill="var(--tiana-green)"/>
-                    <circle cx="20" cy="20" r="5" fill="var(--gold-light)"/>
-                </svg>
-                
-                <img src="foto1xv.jpeg" alt="Pao Quinceañera" onerror="this.src='https://placehold.co/600x800/06120a/d4af37?text=foto1xv.jpeg';">
-                
-                <!-- SVG Decorativo Esquina Inferior -->
-                <svg class="corner-decor decor-br" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10 10 Q 50 10 90 50 Q 90 10 10 10 Z" fill="var(--gold-rich)"/>
-                    <path d="M10 10 Q 10 50 50 90 Q 10 90 10 10 Z" fill="var(--tiana-green)"/>
-                    <circle cx="20" cy="20" r="5" fill="var(--gold-light)"/>
-                </svg>
-            </div>
-
-            <div class="family-section">
-                <h3 class="magical-text">Mis Padres</h3>
-                <p>Sonia Romero González<br><span style="color: var(--gold-rich); font-size: 2rem; display: inline-block; margin: 10px 0;">&</span><br>Iván Osornio de la Cruz</p>
-                
-                <h3 class="magical-text" style="margin-top: 50px;">Mis Madrinas</h3>
-                <p>Julia Romero Morales<br><span style="color: var(--gold-rich); font-size: 2rem; display: inline-block; margin: 10px 0;">&</span><br>Teresa Romero González</p>
-            </div>
-
-            <div class="countdown-section">
-                <h3 class="script-font">Faltan</h3>
-                <div class="countdown" id="countdown">
-                    <div class="time-box"><span id="days">00</span><p>Días</p></div>
-                    <div class="time-box"><span id="hours">00</span><p>Hrs</p></div>
-                    <div class="time-box"><span id="minutes">00</span><p>Min</p></div>
-                    <div class="time-box"><span id="seconds">00</span><p>Seg</p></div>
-                </div>
-            </div>
-
-            <!-- Foto 2 -->
-            <div class="photo-frame">
-                <img src="foto2xv.jpeg" alt="Pao Quinceañera 2" onerror="this.src='https://placehold.co/600x800/06120a/d4af37?text=foto2xv.jpeg';">
-            </div>
-
-            <div class="locations-section">
-                <div class="location-card">
-                    <h3 class="script-font">Ceremonia Religiosa</h3>
-                    <p><strong>Basílica de los Remedios</strong></p>
-                    <p style="font-size: 0.95rem; margin-top: 15px;">Calzada de los Remedios, Col. Los Remedios, Naucalpan de Juárez, Edo. Mex, CP 53400</p>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Bas%C3%ADlica+de+los+Remedios,+Naucalpan" target="_blank" class="btn">Ver en Mapa</a>
-                </div>
-                
-                <div class="location-card">
-                    <h3 class="script-font">Recepción</h3>
-                    <p><strong>Salón Diamante</strong></p>
-                    <p style="font-size: 0.95rem; margin-top: 15px;">Diagonal Minas 56, Col. San Rafael Chamapa, CP 53660, Naucalpan, México</p>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Diagonal+Minas+56,+San+Rafael+Chamapa,+Naucalpan" target="_blank" class="btn">Ver en Mapa</a>
-                </div>
-            </div>
-
-            <!-- Foto 3 -->
-            <div class="photo-frame">
-                <img src="foto3xv.jpeg" alt="Pao Quinceañera 3" onerror="this.src='https://placehold.co/600x800/06120a/d4af37?text=foto3xv.jpeg';">
-            </div>
-
-            <div class="itinerary-section">
-                <h2 class="magical-text">Programa</h2>
-                <div class="timeline">
-                    <div class="timeline-item left">
-                        <div class="timeline-content"><h4>18:00 hrs</h4><p>Ceremonia Religiosa</p></div>
-                    </div>
-                    <div class="timeline-item right">
-                        <div class="timeline-content"><h4>19:30 hrs</h4><p>Recepción en Salón</p></div>
-                    </div>
-                    <div class="timeline-item left">
-                        <div class="timeline-content"><h4>20:00 hrs</h4><p>Comida</p></div>
-                    </div>
-                    <div class="timeline-item right">
-                        <div class="timeline-content"><h4>21:00 hrs</h4><p>Vals</p></div>
-                    </div>
-                    <div class="timeline-item left">
-                        <div class="timeline-content"><h4>22:00 hrs</h4><p>Baile</p></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Foto 4 -->
-            <div class="photo-frame">
-                <img src="foto4xv.jpeg" alt="Pao Quinceañera 4" onerror="this.src='https://placehold.co/600x800/06120a/d4af37?text=foto4xv.jpeg';">
-            </div>
-
-            <div class="gifts-section">
-                <h3 class="magical-text">Obsequios</h3>
-                <p>La presencia es el mejor regalo que puedo recibir. Si además deseas tener un detalle conmigo y no sabes qué, el día del evento podrás obsequiarme lluvia de sobres.</p>
-                <div style="font-size: 4rem; filter: drop-shadow(0 5px 15px rgba(212,175,55,0.6)); margin-top: 20px;">✉️</div>
-            </div>
-            
-            <div class="reactions-section">
-                <h3 class="script-font" style="font-size: 4rem; margin-bottom: 30px; color: var(--gold-light);">Manda tu cariño</h3>
-                <button class="reaction-btn" onclick="triggerReaction('💚', event)">¡Felicidades!</button>
-                <button class="reaction-btn" onclick="triggerReaction('✨', event)">¡Qué emoción!</button>
-                <button class="reaction-btn" onclick="triggerReaction('🌟', event)">¡Ahí estaré!</button>
-            </div>
-            
-            <div style="text-align: center; margin-top: 80px; padding-bottom: 50px;">
-                <p class="magical-text" style="font-size: 5.5rem; font-family: 'Great Vibes', cursive; padding: 0 10px;">¡Te espero!</p>
-            </div>
-
+        
+        <div class="header">
+            <p class="subtitle">Con la bendición de Dios y mis padres</p>
+            <h1>Mis Quince Años</h1>
         </div>
+
+        <!-- Foto 1 (Principal) -->
+        <div class="photo-frame">
+            <img src="foto1xv.jpeg" alt="Pao Quinceañera" onerror="this.src='https://via.placeholder.com/500x700/1a2f24/d4af37?text=Foto+1+(Pao)';">
+        </div>
+
+        <!-- Padres y Madrinas -->
+        <div class="info-section">
+            <h3>Mis Padres</h3>
+            <p><strong>Sonia Romero González e Iván Osornio de la Cruz</strong></p>
+            <br>
+            <h3>Mis Madrinas</h3>
+            <p><strong>Julia Romero Morales y Teresa Romero González</strong></p>
+        </div>
+
+        <!-- Contador -->
+        <div class="info-section">
+            <h3 style="font-size: 3rem;">Faltan</h3>
+            <div class="countdown" id="countdown">
+                <div class="time-box"><span id="days">00</span><p>Días</p></div>
+                <div class="time-box"><span id="hours">00</span><p>Hrs</p></div>
+                <div class="time-box"><span id="minutes">00</span><p>Min</p></div>
+                <div class="time-box"><span id="seconds">00</span><p>Seg</p></div>
+            </div>
+        </div>
+
+        <!-- Animación del Pantano Mágico -->
+        <div class="swamp-animation">
+            <div class="swamp-water"></div>
+            <div class="frogs-container">
+                <img src="image_6ebc15.png" alt="Sapitos" onerror="this.src='https://via.placeholder.com/150x200/transparent/d4af37?text=Sapos';">
+            </div>
+        </div>
+
+        <!-- Foto 2 -->
+        <div class="photo-frame">
+            <img src="foto2xv.jpeg" alt="Pao" onerror="this.src='https://via.placeholder.com/500x700/1a2f24/d4af37?text=Foto+2';">
+        </div>
+
+        <!-- Ubicaciones -->
+        <div class="info-section">
+            <h3>Ceremonia Religiosa</h3>
+            <p><strong>Basílica de los Remedios</strong></p>
+            <p>Calzada de los Remedios, Colonia Los Remedios, Naucalpan de Juárez, Estado de México, CP 53400</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=Bas%C3%ADlica%20de%20los%20Remedios%2C%20Calzada%20de%20los%20Remedios%2C%20Colonia%20Los%20Remedios%2C%20Naucalpan%20de%20Ju%C3%A1rez" target="_blank" class="btn">Ver en Mapa</a>
+        </div>
+        
+        <div class="info-section">
+            <h3>Recepción</h3>
+            <p><strong>Salón Diamante</strong></p>
+            <p>Diagonal Minas 56, Colonia San Rafael Chamapa, CP 53660, Naucalpan, México</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=Sal%C3%B3n%20Diamante%2C%20Diagonal%20Minas%2056%2C%20Colonia%20San%20Rafael%20Chamapa%2C%20Naucalpan" target="_blank" class="btn">Ver en Mapa</a>
+        </div>
+
+        <!-- Foto 3 -->
+        <div class="photo-frame">
+            <img src="foto3xv.jpeg" alt="Pao" onerror="this.src='https://via.placeholder.com/500x700/1a2f24/d4af37?text=Foto+3';">
+        </div>
+
+        <!-- Programa -->
+        <div class="info-section">
+            <h3 style="font-size: 3rem;">Programa</h3>
+            <div class="timeline">
+                <div class="timeline-item"><div class="timeline-content"><h4>18:00 hrs</h4><p>Ceremonia Religiosa</p></div></div>
+                <div class="timeline-item"><div class="timeline-content"><h4>19:30 hrs</h4><p>Recepción en Salón</p></div></div>
+                <div class="timeline-item"><div class="timeline-content"><h4>20:00 hrs</h4><p>Comida</p></div></div>
+                <div class="timeline-item"><div class="timeline-content"><h4>21:00 hrs</h4><p>Vals</p></div></div>
+                <div class="timeline-item"><div class="timeline-content"><h4>22:00 hrs</h4><p>Baile</p></div></div>
+            </div>
+        </div>
+
+        <!-- Foto 4 -->
+        <div class="photo-frame">
+            <img src="foto4xv.jpeg" alt="Pao" onerror="this.src='https://via.placeholder.com/500x700/1a2f24/d4af37?text=Foto+4';">
+        </div>
+
+        <!-- Obsequios -->
+        <div class="info-section">
+            <h3 style="font-size: 3rem;">Obsequios</h3>
+            <p>La presencia es el mejor regalo que puedo recibir. Si además deseas tener un detalle conmigo y no sabes qué, el día del evento podrás obsequiarme lluvia de sobres.</p>
+            <div style="font-size: 3rem; margin-top: 15px;">✉️</div>
+        </div>
+
+        <!-- Confirmación de Asistencia (RSVP Google Sheets) -->
+        <div class="info-section">
+            <h3 style="font-size: 3rem;">Confirmar Asistencia</h3>
+            <p>Por favor, confirma tu asistencia para considerarte en nuestra mesa.</p>
+            
+            <form class="rsvp-form" id="rsvp-form">
+                <div>
+                    <label for="nombre">Nombre Completo:</label>
+                    <input type="text" id="nombre" name="Nombre" placeholder="Ej. Familia Rodríguez" required>
+                </div>
+                <div>
+                    <label for="telefono">Teléfono (WhatsApp):</label>
+                    <input type="tel" id="telefono" name="Telefono" placeholder="Ej. 5512345678" required>
+                </div>
+                <div>
+                    <label for="boletos">Cantidad de Boletos:</label>
+                    <select id="boletos" name="Boletos" required>
+                        <option value="" disabled selected>Selecciona una opción</option>
+                        <option value="1">1 Boleto</option>
+                        <option value="2">2 Boletos</option>
+                        <option value="3">3 Boletos</option>
+                        <option value="4">4 Boletos</option>
+                        <option value="5">5 Boletos</option>
+                    </select>
+                </div>
+                <button type="submit">Enviar Confirmación</button>
+            </form>
+            <div id="form-message">✨ ¡Gracias! Tu confirmación ha sido recibida mágicamente. ✨</div>
+        </div>
+
+        <div style="text-align: center; margin: 50px 0; position: relative; z-index: 20;">
+            <p class="script-font" style="font-size: 3rem;">¡Te espero!</p>
+        </div>
+
     </div>
 
     <script>
-        // --- 1. APERTURA, MÚSICA Y EFECTOS INICIALES ---
+        // Efecto Hojas Cayendo SVG
+        function createLeaves() {
+            const container = document.getElementById('leaf-container');
+            for(let i=0; i<15; i++) {
+                let leaf = document.createElement('div');
+                leaf.className = 'leaf';
+                leaf.style.left = Math.random() * 100 + 'vw';
+                leaf.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                leaf.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(leaf);
+            }
+        }
+        createLeaves();
+
+        // Efecto Luciérnagas
+        function createFireflies() {
+            const container = document.getElementById('firefly-container');
+            for(let i=0; i<20; i++) {
+                let firefly = document.createElement('div');
+                firefly.className = 'firefly';
+                let size = Math.random() * 4 + 2; // 2px a 6px
+                firefly.style.width = size + 'px';
+                firefly.style.height = size + 'px';
+                firefly.style.left = Math.random() * 100 + 'vw';
+                firefly.style.animationDuration = (Math.random() * 10 + 5) + 's';
+                firefly.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(firefly);
+            }
+        }
+        createFireflies();
+
+        // Abrir Invitación y Música
         function openInvitation() {
             document.getElementById('envelope-screen').classList.add('open');
-            
-            // Música en el segundo 55
-            const audio = document.getElementById('bg-music');
-            audio.currentTime = 55; 
-            audio.play().catch(e => console.log("Se requiere interacción para reproducir audio."));
-            
-            // Iniciar animaciones de fondo
-            startBotanicalRain();
-            createFirefliesBg(30);
-        }
-
-        // --- 2. LLUVIA BOTÁNICA (Vectores, Cero Emojis) ---
-        function startBotanicalRain() {
-            const container = document.getElementById('botanical-rain-container');
-            
-            // SVG de una hoja elegante
-            const leafSVG = `
-                <svg viewBox="0 0 24 24" width="25" height="25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12,2 C12,2 4,6 4,14 C4,18 8,22 12,22 C16,22 20,18 20,14 C20,6 12,2 12,2 Z" fill="currentColor"/>
-                </svg>
-            `;
-            
-            // Tonos de verde para las hojas
-            const colors = ['#5a805c', '#2d4c31', '#709a71', '#d4af37'];
-
-            setInterval(() => {
-                let leaf = document.createElement('div');
-                leaf.className = 'falling-leaf';
-                leaf.innerHTML = leafSVG;
-                
-                // Asignar color aleatorio
-                leaf.style.color = colors[Math.floor(Math.random() * colors.length)];
-                
-                // Posición y tamaño aleatorio
-                leaf.style.left = Math.random() * 100 + 'vw';
-                let sizeScale = Math.random() * 0.8 + 0.6;
-                leaf.style.transform = `scale(${sizeScale})`;
-                
-                // Duración de caída aleatoria (lenta y elegante)
-                let duration = (Math.random() * 15 + 15); 
-                leaf.style.animationDuration = duration + 's';
-                
-                container.appendChild(leaf);
-                setTimeout(() => leaf.remove(), duration * 1000);
-            }, 600); // Crea una hoja cada 600ms
-        }
-
-        // --- 3. LUCIÉRNAGAS DE FONDO (Puro CSS) ---
-        function createFirefliesBg(count) {
-            const container = document.getElementById('fireflies-container');
-            for(let i=0; i<count; i++) {
-                let f = document.createElement('div');
-                f.className = 'firefly-bg';
-                
-                let size = Math.random() * 6 + 3;
-                f.style.width = size + 'px';
-                f.style.height = size + 'px';
-                
-                f.style.left = Math.random() * 100 + '%';
-                f.style.animationDelay = (Math.random() * 10) + 's';
-                f.style.animationDuration = (Math.random() * 15 + 10) + 's';
-                
-                container.appendChild(f);
+            var audio = document.getElementById('bg-music');
+            audio.currentTime = 55; // Empieza en el seg 55
+            var playPromise = audio.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(error => { console.log("Interacción requerida para audio"); });
             }
         }
 
-        // --- 4. BOTONES DE REACCIÓN ---
-        function triggerReaction(emoji, event) {
-            for(let i=0; i<12; i++) {
-                let particle = document.createElement('div');
-                particle.className = 'reaction-particle';
-                particle.innerText = emoji;
-                
-                let spreadX = (Math.random() * 120) - 60;
-                particle.style.left = (event.clientX + spreadX) + 'px';
-                particle.style.top = (event.clientY - 30) + 'px';
-                
-                document.body.appendChild(particle);
-                setTimeout(() => particle.remove(), 2000);
-            }
-        }
-
-        // --- 5. CONTADOR REGRESIVO EXACTO ---
-        const eventDate = new Date("Dec 5, 2026 18:00:00").getTime();
-        
-        const timer = setInterval(function() {
+        // Cuenta Regresiva
+        const countDownDate = new Date("Dec 5, 2026 18:00:00").getTime();
+        const x = setInterval(function() {
             const now = new Date().getTime();
-            const distance = eventDate - now;
+            const distance = countDownDate - now;
 
             if (distance < 0) {
-                clearInterval(timer);
-                document.getElementById("countdown").innerHTML = "<h3 class='magical-text' style='font-size:3.5rem; margin:0;'>¡La magia ha comenzado!</h3>";
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "<p>¡Llegó el gran día!</p>";
                 return;
             }
-            
-            document.getElementById("days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
-            document.getElementById("hours").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
-            document.getElementById("minutes").innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
-            document.getElementById("seconds").innerText = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
+
+            document.getElementById("days").innerHTML = Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+            document.getElementById("hours").innerHTML = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+            document.getElementById("minutes").innerHTML = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+            document.getElementById("seconds").innerHTML = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
         }, 1000);
+
+        // Envío del Formulario a Google Sheets
+        document.getElementById('rsvp-form').addEventListener('submit', function(e) {
+            e.preventDefault(); // Evita que la página recargue
+            
+            const form = e.target;
+            const data = new FormData(form);
+            const url = "https://script.google.com/macros/s/AKfycbwuOMvIrg4c7GyjCimoMUTrzR4OjUD1fK3nLAk-8KNOztYzSxJz-ylbXdxZT1LV2f_z/exec"; // TU URL EXACTA
+            const submitButton = form.querySelector('button');
+            
+            // Cambiar texto del botón mientras envía
+            submitButton.innerHTML = "Enviando...";
+            submitButton.disabled = true;
+
+            fetch(url, {
+                method: 'POST',
+                body: data,
+                mode: 'no-cors' // Fundamental para que Google no bloquee la petición
+            }).then(() => {
+                // Como es no-cors, asumimos éxito al terminar la promesa
+                form.style.display = 'none'; // Oculta el formulario
+                document.getElementById('form-message').style.display = 'block'; // Muestra mensaje de éxito
+            }).catch(error => {
+                console.error('Error!', error.message);
+                submitButton.innerHTML = "Intentar de nuevo";
+                submitButton.disabled = false;
+            });
+        });
     </script>
 </body>
 </html>
