@@ -421,9 +421,9 @@
             <h1>Mis Quince Años</h1>
         </div>
 
-        <!-- Foto 1 (Principal) -->
+        <!-- Foto Principal (Cambiamos la 1 por la 2) -->
         <div class="photo-frame">
-            <img src="foto1xv.jpeg" alt="Pao Quinceañera" onerror="this.src='https://via.placeholder.com/500x700/1a2f24/d4af37?text=Foto+1+(Pao)';">
+            <img src="foto2xv.jpeg" alt="Pao Quinceañera" onerror="this.src='https://via.placeholder.com/500x700/1a2f24/d4af37?text=Foto+2+(Principal)';">
         </div>
 
         <!-- Padres y Madrinas -->
@@ -446,14 +446,18 @@
             </div>
         </div>
 
-        <!-- Foto 2 -->
+        <!-- Foto Secundaria (Antes era la 2, ahora es la 1) -->
         <div class="photo-frame">
-            <img src="foto2xv.jpeg" alt="Pao" onerror="this.src='https://via.placeholder.com/500x700/1a2f24/d4af37?text=Foto+2';">
+            <img src="foto1xv.jpeg" alt="Pao" onerror="this.src='https://via.placeholder.com/500x700/1a2f24/d4af37?text=Foto+1';">
         </div>
 
         <!-- Ubicaciones -->
         <div class="info-section">
             <h3>Ceremonia Religiosa</h3>
+            
+            <!-- Aquí va la foto 5 de la iglesia incrustada sutilmente -->
+            <img src="foto5xv.jpeg" alt="Iglesia" style="width: 100%; border-radius: 5px; margin: 15px 0; border: 2px solid var(--secondary-color);" onerror="this.src='https://via.placeholder.com/500x350/1a2f24/d4af37?text=Iglesia';">
+            
             <p><strong>Basílica de los Remedios</strong></p>
             <p>Calzada de los Remedios, Colonia Los Remedios, Naucalpan de Juárez, Estado de México, CP 53400</p>
             <a href="https://www.google.com/maps/search/?api=1&query=Bas%C3%ADlica%20de%20los%20Remedios%2C%20Calzada%20de%20los%20Remedios%2C%20Colonia%20Los%20Remedios%2C%20Naucalpan%20de%20Ju%C3%A1rez" target="_blank" class="btn">Ver en Mapa</a>
@@ -510,14 +514,11 @@
                     <input type="tel" id="telefono" name="Telefono" placeholder="Ej. 5512345678" required>
                 </div>
                 <div>
-                    <label for="boletos">Cantidad de Boletos:</label>
-                    <select id="boletos" name="Boletos" required>
+                    <label for="asistencia">¿Asistirás al evento?</label>
+                    <select id="asistencia" name="Asistencia" required>
                         <option value="" disabled selected>Selecciona una opción</option>
-                        <option value="1">1 Boleto</option>
-                        <option value="2">2 Boletos</option>
-                        <option value="3">3 Boletos</option>
-                        <option value="4">4 Boletos</option>
-                        <option value="5">5 Boletos</option>
+                        <option value="Sí asisto">Sí asisto</option>
+                        <option value="No asisto">No asisto</option>
                     </select>
                 </div>
                 <button type="submit">Enviar Confirmación</button>
