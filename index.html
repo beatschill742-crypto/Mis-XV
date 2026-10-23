@@ -347,46 +347,91 @@
             border-radius: 5px;
         }
 
-        /* Timeline (Itinerario) */
+        /* Timeline (Itinerario) Estilo Romántico */
         .timeline {
             position: relative;
             max-width: 400px;
-            margin: 20px auto 0;
-            text-align: left;
+            margin: 30px auto 0;
+            padding: 10px 0;
         }
 
+        /* Línea punteada central */
         .timeline::after {
             content: '';
             position: absolute;
             width: 2px;
-            background-color: var(--secondary-color);
+            border-left: 3px dotted var(--secondary-color);
             top: 0;
             bottom: 0;
-            left: 20px;
-        }
-
-        .timeline-item {
-            padding: 10px 0 20px 45px;
-            position: relative;
-        }
-
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            width: 14px;
-            height: 14px;
-            left: 14px;
-            background-color: var(--bg-color);
-            border: 3px solid var(--secondary-color);
-            top: 15px;
-            border-radius: 50%;
+            left: 50%;
+            transform: translateX(-50%);
             z-index: 1;
         }
 
-        .timeline-content h4 {
-            margin: 0;
-            color: var(--secondary-color);
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            margin-bottom: 35px;
+            z-index: 2;
+        }
+
+        /* Corazón en medio de la línea */
+        .timeline-item::after {
+            content: '♥';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--text-dark);
             font-size: 1.2rem;
+            background-color: var(--secondary-color);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            line-height: 1;
+        }
+
+        .timeline-text {
+            width: 45%;
+            text-align: right;
+            padding-right: 15px;
+        }
+
+        .timeline-visual {
+            width: 45%;
+            text-align: left;
+            padding-left: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .timeline-text h4 {
+            margin: 0;
+            color: var(--text-light);
+            font-size: 1.3rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: bold;
+        }
+
+        .timeline-text p {
+            margin: 5px 0 0 0;
+            color: var(--secondary-color);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* Dibujitos (Iconos SVG) */
+        .timeline-visual svg {
+            width: 45px;
+            height: 45px;
+            fill: var(--secondary-color);
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.6));
         }
 
         /* Audio oculto */
@@ -475,15 +520,66 @@
             <img src="foto3xv.jpeg" alt="Pao" onerror="this.src='https://via.placeholder.com/500x700/1a2f24/d4af37?text=Foto+3';">
         </div>
 
-        <!-- Programa -->
+        <!-- Programa con Dibujitos y Corazones -->
         <div class="info-section">
             <h3 style="font-size: 3rem;">Programa</h3>
             <div class="timeline">
-                <div class="timeline-item"><div class="timeline-content"><h4>18:00 hrs</h4><p>Ceremonia Religiosa</p></div></div>
-                <div class="timeline-item"><div class="timeline-content"><h4>19:30 hrs</h4><p>Recepción en Salón</p></div></div>
-                <div class="timeline-item"><div class="timeline-content"><h4>20:00 hrs</h4><p>Comida</p></div></div>
-                <div class="timeline-item"><div class="timeline-content"><h4>21:00 hrs</h4><p>Vals</p></div></div>
-                <div class="timeline-item"><div class="timeline-content"><h4>22:00 hrs</h4><p>Baile</p></div></div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-text">
+                        <h4>Misa</h4>
+                        <p>18:00 hrs</p>
+                    </div>
+                    <div class="timeline-visual">
+                        <!-- Dibujito Iglesia -->
+                        <svg viewBox="0 0 24 24"><path d="M12 2l-5 4v2H5v14h14V8h-2V6l-5-4zm0 2.6l3 2.4V8h-6V7l3-2.4zM7 10h10v10h-3v-4H10v4H7v-10zm5-5h-2v2h2V5z"/></svg>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-text">
+                        <h4>Recepción</h4>
+                        <p>19:30 hrs</p>
+                    </div>
+                    <div class="timeline-visual">
+                        <!-- Dibujito Copa -->
+                        <svg viewBox="0 0 24 24"><path d="M21 5V3H3v2l8 9v5H6v2h12v-2h-5v-5l8-9zM5.66 5h12.69l-1.78 2H7.43L5.66 5z"/></svg>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-text">
+                        <h4>Cena</h4>
+                        <p>20:00 hrs</p>
+                    </div>
+                    <div class="timeline-visual">
+                        <!-- Dibujito Cubiertos -->
+                        <svg viewBox="0 0 24 24"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z"/></svg>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-text">
+                        <h4>Vals</h4>
+                        <p>21:00 hrs</p>
+                    </div>
+                    <div class="timeline-visual">
+                        <!-- Dibujito Corona / Quinceañera -->
+                        <svg viewBox="0 0 24 24"><path d="M5 16h14v2H5zm14-9l-4 3-3-5-3 5-4-3 2 7h10l2-7z"/></svg>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-text">
+                        <h4>Baile</h4>
+                        <p>22:00 hrs</p>
+                    </div>
+                    <div class="timeline-visual">
+                        <!-- Dibujito Notas Musicales -->
+                        <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -497,6 +593,11 @@
             <h3 style="font-size: 3rem;">Obsequios</h3>
             <p>La presencia es el mejor regalo que puedo recibir. Si además deseas tener un detalle conmigo y no sabes qué, el día del evento podrás obsequiarme lluvia de sobres.</p>
             <div style="font-size: 3rem; margin-top: 15px;">✉️</div>
+        </div>
+
+        <!-- Foto 6 (Nueva agregada después de obsequios) -->
+        <div class="photo-frame">
+            <img src="foto6xv.jpeg" alt="Pao" onerror="this.src='https://via.placeholder.com/500x700/1a2f24/d4af37?text=Foto+6';">
         </div>
 
         <!-- Confirmación de Asistencia (RSVP Google Sheets) -->
@@ -521,9 +622,9 @@
                         <option value="No asisto">No asisto</option>
                     </select>
                 </div>
-                <button type="submit">Enviar Confirmación</button>
-            </form>
-            <div id="form-message">✨ ¡Gracias! Tu confirmación ha sido recibida mágicamente. ✨</div>
+        <!-- Foto 7 (Nueva agregada antes del mensaje final) -->
+        <div class="photo-frame">
+            <img src="foto7xv.jpeg" alt="Pao" onerror="this.src='https://via.placeholder.com/500x700/1a2f24/d4af37?text=Foto+7';">
         </div>
 
         <div style="text-align: center; margin: 50px 0; position: relative; z-index: 20;">
