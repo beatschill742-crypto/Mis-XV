@@ -256,6 +256,21 @@
             margin-bottom: 10px;
         }
 
+        /* Estilo elegante para los nombres separados */
+        .nombres-destacados {
+            font-size: 1.2rem;
+            line-height: 1.2;
+        }
+
+        .nombres-destacados .conector {
+            font-family: 'Great Vibes', cursive;
+            color: var(--secondary-color);
+            font-size: 2.2rem;
+            display: inline-block;
+            margin: 5px 0;
+            font-weight: normal;
+        }
+
         .countdown {
             display: flex;
             justify-content: center;
@@ -474,10 +489,18 @@
         <!-- Padres y Madrinas -->
         <div class="info-section">
             <h3>Mis Padres</h3>
-            <p><strong>Sonia Romero González e Iván Osornio de la Cruz</strong></p>
+            <p class="nombres-destacados">
+                <strong>Sonia Romero González</strong><br>
+                <span class="conector">e</span><br>
+                <strong>Iván Osorno de la Rosa</strong>
+            </p>
             <br>
             <h3>Mis Madrinas</h3>
-            <p><strong>Julia Romero Morales y Teresa Romero González</strong></p>
+            <p class="nombres-destacados">
+                <strong>Julia Romero Morales</strong><br>
+                <span class="conector">y</span><br>
+                <strong>Teresa Romero González</strong>
+            </p>
         </div>
 
         <!-- Contador -->
