@@ -692,10 +692,18 @@
                 // Mostrar el nombre en el sobre de bienvenida
                 const guestDisplay = document.getElementById('guest-name-display');
                 if (guestDisplay) {
-                    let texto = `<span style="font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--text-light);">Para:</span><br><span style="font-family: 'Great Vibes', cursive; font-size: 3.5rem; color: var(--secondary-color); line-height: 1;">${invitado}</span>`;
+                    let texto = "";
                     
-                    if (pases) {
-                        texto += `<br><span style="display: inline-block; margin-top: 10px; font-family: 'Playfair Display', serif; font-size: 0.85rem; color: var(--bg-color); background: var(--secondary-color); padding: 5px 15px; border-radius: 20px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase;">Pases asignados: ${pases}</span>`;
+                    // Si el enlace ya dice "Pase por...", evitamos repetir la información
+                    if (invitado.toLowerCase().includes("pase por")) {
+                        texto = `<span style="font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--secondary-color); font-weight: bold; line-height: 1.2;">${invitado}</span>`;
+                    } else {
+                        // Formato normal con nombre y etiqueta de pases
+                        texto = `<span style="font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--text-light);">Para:</span><br><span style="font-family: 'Great Vibes', cursive; font-size: 3.5rem; color: var(--secondary-color); line-height: 1;">${invitado}</span>`;
+                        
+                        if (pases) {
+                            texto += `<br><span style="display: inline-block; margin-top: 10px; font-family: 'Playfair Display', serif; font-size: 0.85rem; color: var(--bg-color); background: var(--secondary-color); padding: 5px 15px; border-radius: 20px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase;">Pases asignados: ${pases}</span>`;
+                        }
                     }
                     
                     guestDisplay.innerHTML = texto;
