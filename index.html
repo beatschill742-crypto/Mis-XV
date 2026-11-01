@@ -362,6 +362,16 @@
             border-radius: 5px;
         }
 
+        #rsvp-form-container {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         /* Timeline (Itinerario) Estilo Romántico */
         .timeline {
             position: relative;
@@ -460,6 +470,10 @@
     <div id="envelope-screen">
         <div class="envelope-content">
             <h1 style="font-size: 4rem;">Pao</h1>
+            
+            <!-- Contenedor dinámico para el nombre del invitado -->
+            <div id="guest-name-display" style="display: none; margin: 15px 0;"></div>
+
             <p class="frase-magica">"La estrella te guiará una parte del camino, tú tienes que trabajar duro y dar todo tu empeño y entonces podrás hacer tu sueño realidad."</p>
             <button class="open-btn" onclick="openInvitation()">Abrir Invitación</button>
         </div>
@@ -628,25 +642,31 @@
             <h3 style="font-size: 3rem;">Confirmar Asistencia</h3>
             <p>Por favor, confirma tu asistencia para considerarte en nuestra mesa.</p>
             
-            <form class="rsvp-form" id="rsvp-form">
-                <div>
-                    <label for="nombre">Nombre Completo:</label>
-                    <input type="text" id="nombre" name="Nombre" placeholder="Ej. Familia Rodríguez" required>
-                </div>
-                <div>
-                    <label for="telefono">Teléfono (WhatsApp):</label>
-                    <input type="tel" id="telefono" name="Telefono" placeholder="Ej. 5512345678" required>
-                </div>
-                <div>
-                    <label for="asistencia">¿Asistirás al evento?</label>
-                    <select id="asistencia" name="Asistencia" required>
-                        <option value="" disabled selected>Selecciona una opción</option>
-                        <option value="Sí asisto">Sí asisto</option>
-                        <option value="No asisto">No asisto</option>
-                    </select>
-                </div>
-                <button type="submit">Enviar Confirmación</button>
-            </form>
+            <button type="button" class="btn" id="reveal-rsvp-btn" style="width: 100%; cursor: pointer; font-size: 1.1rem; padding: 15px;" onclick="document.getElementById('rsvp-form-container').style.display='block'; this.style.display='none';">
+                ✨ Confirmar Ahora
+            </button>
+
+            <div id="rsvp-form-container">
+                <form class="rsvp-form" id="rsvp-form">
+                    <div>
+                        <label for="nombre">Nombre Completo:</label>
+                        <input type="text" id="nombre" name="Nombre" placeholder="Ej. Familia Rodríguez" required>
+                    </div>
+                    <div>
+                        <label for="telefono">Teléfono (WhatsApp):</label>
+                        <input type="tel" id="telefono" name="Telefono" placeholder="Ej. 5512345678" required>
+                    </div>
+                    <div>
+                        <label for="asistencia">¿Asistirás al evento?</label>
+                        <select id="asistencia" name="Asistencia" required>
+                            <option value="" disabled selected>Selecciona una opción</option>
+                            <option value="Sí asisto">Sí asisto</option>
+                            <option value="No asisto">No asisto</option>
+                        </select>
+                    </div>
+                    <button type="submit">Enviar Confirmación</button>
+                </form>
+            </div>
             <div id="form-message">✨ ¡Gracias! Tu confirmación ha sido recibida mágicamente. ✨</div>
         </div>
 
@@ -662,6 +682,34 @@
     </div>
 
     <script>
+        // Lectura de parámetros de la URL para enlaces personalizados
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const invitado = urlParams.get('invitado');
+            const pases = urlParams.get('pases');
+            
+            if (invitado) {
+                // Mostrar el nombre en el sobre de bienvenida
+                const guestDisplay = document.getElementById('guest-name-display');
+                if (guestDisplay) {
+                    let texto = `<span style="font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--text-light);">Para:</span><br><span style="font-family: 'Great Vibes', cursive; font-size: 3.5rem; color: var(--secondary-color); line-height: 1;">${invitado}</span>`;
+                    
+                    if (pases) {
+                        texto += `<br><span style="display: inline-block; margin-top: 10px; font-family: 'Playfair Display', serif; font-size: 0.85rem; color: var(--bg-color); background: var(--secondary-color); padding: 5px 15px; border-radius: 20px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase;">Pases asignados: ${pases}</span>`;
+                    }
+                    
+                    guestDisplay.innerHTML = texto;
+                    guestDisplay.style.display = "block";
+                }
+                
+                // Pre-llenar el formulario
+                const inputNombre = document.getElementById('nombre');
+                if (inputNombre) {
+                    inputNombre.value = invitado;
+                }
+            }
+        });
+
         // Efecto Hojas Cayendo SVG
         function createLeaves() {
             const container = document.getElementById('leaf-container');
@@ -728,7 +776,7 @@
             
             const form = e.target;
             const data = new FormData(form);
-            const url = "https://script.google.com/macros/s/AKfycbyn3bXotpI2S_tRyXcNh0hpdDxLFrtyU2hObhvf_V-O6u4It6bVAlHWxHyLAyiQ97pN/exec"; // TU NUEVA URL EXACTA
+            const url = "https://script.google.com/macros/s/AKfycbyn3bXotpI2S_tRyXcNh0hpdDxLFrtyU2hObhvf_V-O6u4It6bVAlHWxHyLAyiQ97pN/exec"; 
             const submitButton = form.querySelector('button');
             
             // Cambiar texto del botón mientras envía
@@ -741,7 +789,7 @@
                 mode: 'no-cors' // Fundamental para que Google no bloquee la petición
             }).then(() => {
                 // Como es no-cors, asumimos éxito al terminar la promesa
-                form.style.display = 'none'; // Oculta el formulario
+                document.getElementById('rsvp-form-container').style.display = 'none'; // Oculta el formulario
                 document.getElementById('form-message').style.display = 'block'; // Muestra mensaje de éxito
             }).catch(error => {
                 console.error('Error!', error.message);
